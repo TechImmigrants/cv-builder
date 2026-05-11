@@ -1,0 +1,28 @@
+{
+  "lastUpdated": "2026-05",
+  "aiPmMarket": {
+    "postingGrowthSince2023": "300%",
+    "openPositionsGlobal": 600,
+    "applicationsPerRoleVsTraditional": "3x",
+    "totalCompRange": { "min": 192000, "max": 437000, "currency": "USD" },
+    "baseSalaryMedian": { "min": 192000, "max": 300000, "currency": "USD" }
+  },
+  "aiEngineerMarket": {
+    "midLevelMedian": { "min": 160000, "max": 210000, "currency": "USD" },
+    "seniorMedian": { "min": 220000, "max": 300000, "currency": "USD" },
+    "ragInNewRoles": "70%",
+    "mlResumesRejectedMissingMLOps": "68%"
+  },
+  "hiring": {
+    "companiesUsingAIScreening": "70%",
+    "qualifiedRejectedByATS": "75%",
+    "fortune500UsingATS": "97-98%",
+    "employersReportingAISkillsGap": "47%",
+    "preferJuniorWithAIOverSeniorWithout": "71%"
+  },
+  "trends": {
+    "aiNativeCompaniesHireFewerPMs": "1/3 fewer",
+    "warmIntroConversionVsCold": "10x",
+    "metaApplicationWindow": "24 hours"
+  }
+}

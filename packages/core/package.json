@@ -1,0 +1,33 @@
+{
+  "name": "@cv-builder/core",
+  "version": "0.1.0",
+  "description": "CV evaluation and tailoring engine",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.2",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "keywords": [
+    "cv",
+    "resume",
+    "ai",
+    "job-search",
+    "ats"
+  ],
+  "license": "MIT"
+}

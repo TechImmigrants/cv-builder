@@ -1,0 +1,17 @@
+{
+  "name": "@cv-builder/web",
+  "version": "0.1.0",
+  "description": "CV Builder web UI — privacy-first, runs in your browser",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Web UI not yet implemented. See issue tracker for tasks.'",
+    "build": "echo 'Web UI not yet implemented.'",
+    "lint": "echo 'No lint configured yet'",
+    "test": "echo 'No tests yet'"
+  },
+  "dependencies": {
+    "@cv-builder/core": "workspace:*"
+  },
+  "license": "MIT"
+}

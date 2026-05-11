@@ -1,40 +1,85 @@
 # Contributing to CV Builder
 
-Thank you for your interest in contributing! This project is built by the Tech Immigrants community, and every contribution matters.
+Thank you for contributing! This project is built by the Tech Immigrants community, and every contribution matters.
 
-## How to contribute
+## Prerequisites
 
-### 1. Find something to work on
+- Node.js 20+
+- pnpm 9+ (`npm install -g pnpm`)
+- Git
 
-- Check the [Issues](https://github.com/TechImmigrants/cv-builder/issues) tab for open tasks
-- Issues labeled `good first issue` are great for newcomers
-- Issues labeled `help wanted` need community input
-
-### 2. Fork and clone
+## Setup
 
 ```bash
 # Fork the repo on GitHub, then:
 git clone https://github.com/YOUR-USERNAME/cv-builder.git
 cd cv-builder
 git remote add upstream https://github.com/TechImmigrants/cv-builder.git
+pnpm install
+pnpm build
 ```
 
-### 3. Create a branch
+## Project Structure
+
+```
+packages/
+├── core/     # Evaluation engine — TypeScript library
+├── cli/      # Command-line tool
+└── web/      # Browser UI (Next.js)
+research/     # Sources and data backing our rules
+docs/         # Architecture and guides
+```
+
+## Development Workflow
+
+### 1. Pick an issue
+
+- Check [Issues](https://github.com/TechImmigrants/cv-builder/issues)
+- Comment "I'll take this" so others know it's claimed
+- Issues labeled `good first issue` are great for newcomers
+
+### 2. Create a branch
 
 ```bash
 git checkout -b feature/your-feature-name
 ```
 
-Use clear branch names:
-- `feature/pdf-export` for new features
-- `fix/typo-in-readme` for fixes
-- `docs/add-setup-guide` for documentation
+Branch naming:
+- `feature/pdf-export` — new features
+- `fix/scoring-bug` — bug fixes
+- `archetype/mobile-engineer` — new role archetypes
+- `rule/objective-statement` — new evaluation rules
+- `docs/setup-guide` — documentation
 
-### 4. Make your changes
+### 3. Make your changes
 
-- Write clear, readable code
-- Test your changes locally before submitting
-- Keep commits focused (one change per commit)
+```bash
+# Run the specific package you're working on
+pnpm --filter @cv-builder/core dev    # Watch mode for core
+pnpm --filter @cv-builder/cli dev     # Watch mode for CLI
+
+# Run tests
+pnpm test
+
+# Check formatting
+pnpm format:check
+
+# Fix formatting
+pnpm format
+```
+
+### 4. Commit with clear messages
+
+```bash
+git commit -m "feat(core): add mobile engineer archetype"
+git commit -m "fix(cli): handle empty CV file gracefully"
+git commit -m "docs: add setup instructions for Windows"
+```
+
+Format: `type(scope): description`
+
+Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`
+Scopes: `core`, `cli`, `web`, `research`, `ci`
 
 ### 5. Submit a pull request
 
@@ -42,28 +87,85 @@ Use clear branch names:
 git push origin feature/your-feature-name
 ```
 
-Then open a PR on GitHub. In your PR description:
-- Explain what you changed and why
-- Reference any related issue (e.g., "Closes #12")
-- Add screenshots if it's a UI change
+Then open a PR on GitHub. Fill in the template — it asks:
+- What does this PR do?
+- Related issue number
+- Type of change
+- Checklist
 
 ### 6. Code review
 
-A maintainer will review your PR. We might ask for changes. That's normal and part of the process. We review with respect and expect the same.
+A maintainer will review within 24 hours. We might ask for changes — that's normal. We review with respect and expect the same.
+
+---
+
+## Adding a New Archetype (Most Common Contribution)
+
+This is the easiest way to make a meaningful impact:
+
+1. Open an issue using the "New Role Archetype" template
+2. Research 15-30 keywords for the role (check real job postings)
+3. Add the archetype to `packages/core/src/archetypes/index.ts`
+4. Add tests
+5. Submit a PR
+
+Example archetype structure:
+
+```typescript
+ARCHETYPES.set("mobile-engineer", {
+  id: "mobile-engineer",
+  name: "Mobile Engineer",
+  description: "iOS/Android engineers building native and cross-platform apps",
+  keywords: ["swift", "kotlin", "react native", "flutter", ...],
+  evaluationWeights: {
+    shippedEvidence: 0.25,
+    quantifiedImpact: 0.20,
+    toolingVisibility: 0.20,
+    atsCompatibility: 0.15,
+    keywordMatch: 0.10,
+    publicProof: 0.10,
+  },
+  actionVerbs: ["Built", "Shipped", "Optimized", ...],
+  antiPatterns: ["familiar with mobile development", ...],
+});
+```
+
+## Adding a New Rule
+
+1. Open an issue using the "New Rule" template
+2. Include evidence (recruiter source, hiring data)
+3. Add the rule to `packages/core/src/rules/index.ts`
+4. Add tests
+5. Submit a PR
+
+---
 
 ## Guidelines
 
-- Be kind and respectful (see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md))
-- Ask questions if you're unsure. No question is too basic.
-- Prefer simple solutions over clever ones
-- Document your code when the intent isn't obvious
+- **One issue = one PR.** Don't bundle unrelated changes.
+- **Tests required** for new features and bug fixes in `core/`.
+- **Research required** for new rules (link your source).
+- **Ask if unsure.** No question is too basic. Open an issue or ask in Telegram.
+- **Keep it simple.** We prefer readable code over clever code.
 
-## First time contributing to open source?
+## What We DON'T Accept
 
-Welcome! These resources might help:
+- Changes without a linked issue (open one first)
+- Rules without source citations
+- Breaking changes to the core API without an RFC
+- Code that collects user data or phones home
+
+---
+
+## First Time Contributing to Open Source?
+
+Welcome! You belong here. These resources help:
 - [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
 - [First Timers Only](https://www.firsttimersonly.com/)
+- [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
 
 ## Questions?
 
-Open an issue or reach out in the [Tech Immigrants Telegram group](https://t.me/techimmigrants).
+- Open a [Discussion](https://github.com/TechImmigrants/cv-builder/discussions) on GitHub
+- Ask in the [Telegram group](https://t.me/techimmigrants)
+- Tag a maintainer on your issue
