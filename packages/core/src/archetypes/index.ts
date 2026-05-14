@@ -140,6 +140,45 @@ ARCHETYPES.set("frontend-engineer", {
   ],
 });
 
+ARCHETYPES.set("qa-test-engineer", {
+  id: "qa-test-engineer",
+  name: "QA / Test Engineer",
+  description: "Quality assurance and test automation engineers ensuring software reliability",
+  keywords: [
+    "playwright", "cypress", "selenium", "jest", "vitest", "mocha", "jasmine",
+    "test automation", "e2e testing", "integration testing", "unit testing",
+    "ci/cd", "github actions", "gitlab ci", "jenkins", "docker", "kubernetes",
+    "api testing", "postman", "rest assured", "graphql testing",
+    "performance testing", "k6", "jmeter", "load testing", "stress testing",
+    "regression testing", "smoke testing", "exploratory testing", "test planning",
+    "bug tracking", "jira", "testrail", "qase", "allure", "reportportal",
+    "bdd", "cucumber", "gherkin", "tdd", "contract testing", "pact",
+    "accessibility testing", "a11y", "axe", "lighthouse", "visual regression",
+    "mobile testing", "appium", "detox", "xcuitest", "espresso",
+  ],
+  evaluationWeights: {
+    shippedEvidence: 0.20,
+    quantifiedImpact: 0.25,
+    toolingVisibility: 0.25,
+    atsCompatibility: 0.10,
+    keywordMatch: 0.10,
+    publicProof: 0.10,
+  },
+  actionVerbs: [
+    "Automated", "Identified", "Reduced", "Prevented", "Designed",
+    "Implemented", "Executed", "Validated", "Debugged", "Optimized",
+    "Documented", "Collaborated",
+  ],
+  antiPatterns: [
+    "manually tested everything",
+    "responsible for quality",
+    "found bugs",
+    "ensured bug-free releases",
+    "various testing tools",
+    "detail-oriented tester",
+  ],
+});
+
 ARCHETYPES.set("devops-sre", {
   id: "devops-sre",
   name: "DevOps / SRE",
