@@ -185,6 +185,30 @@ function findIssues(cv: string, archetype: RoleArchetype) {
     }
   }
 
+  const DATE_FORMAT_PATTERNS = [
+    { type: "YYYY-MM", regex: /\b\d{4}-\d{2}\b/ },
+    { type: "MM-YYYY", regex: /\b\d{2}-\d{4}\b/ },
+    { type: "YYYY-YYYY", regex: /\b\d{4}\s*-\s*\d{4}\b/ },
+    { type: "Mon YYYY", regex: /\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{4}\b/i }
+  ];
+
+  const formats = new Set<string>();
+
+  for (const { type, regex } of DATE_FORMAT_PATTERNS) {
+    if (regex.test(cv)) {
+      formats.add(type);
+    }
+  }
+
+  if (formats.size > 1) {
+    issues.push({
+      element: "Inconsistent date formats",
+      why: `Multiple formats detected: ${[...formats].join(", ")}`,
+      fix: "Use a consistent format throughout. Recommended: Mon YYYY (e.g., Jan 2022).",
+      severity: "minor",
+    });
+  }
+
   return issues;
 }
 
