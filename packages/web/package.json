@@ -5,13 +5,25 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "echo 'Web UI not yet implemented. See issue tracker for tasks.'",
-    "build": "echo 'Web UI not yet implemented.'",
-    "lint": "echo 'No lint configured yet'",
-    "test": "echo 'No tests yet'"
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "next lint",
+    "test": "echo 'No tests yet'",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@cv-builder/core": "workspace:*"
+    "@cv-builder/core": "workspace:*",
+    "next": "^15.3.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.4",
+    "@types/node": "^25.6.2",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.7.0"
   },
   "license": "MIT"
 }
