@@ -46,7 +46,7 @@ Available on three surfaces simultaneously:
 | `eval` | Test harness | 5 golden fixtures passing in CI |
 | `core` | Orchestrator | `runEvaluation()` end-to-end |
 | `server` | HTTP API | `POST /eval`, `POST /parse` |
-| `templates` | React render templates | At least 1 read-only render of `EvalResult` (no editor, no PDF export) |
+| `templates` | Placeholder directory for future render templates | Directory with README only (rendering is Phase 2) |
 | `web-ui` | Browser interface | Paste resume + JD → see result |
 | `telegram` | Bot | Send file → get result |
 | `cli` | Prompt files + README | Power users can run locally |
@@ -132,8 +132,8 @@ Assignments finalized in team call.
 | Week | Milestone |
 |---|---|
 | Week 0 | Architecture merged (done), Phase 1 plan shared, team call held |
-| Week 1 | `schemas` + `prompts` + `llm` + `core` working locally. Golden fixtures defined. |
-| Week 2 | `web-ui` + `telegram` + `server` connected. End-to-end flow working. |
+| Week 1 | `schemas` + `prompts` + `llm` + `ingestion` + `intelligence` working locally. Golden fixtures defined. |
+| Week 2 | `core` (orchestrator, depends on Week 1) + `web-ui` + `telegram` + `server` + `cli` connected. End-to-end flow working. All can start in parallel once interfaces from Week 1 are defined. |
 | Week 3 | Polish, deploy, 5 golden fixtures green in CI. Public launch. |
 
 ## Relationship to cvroast.dev
