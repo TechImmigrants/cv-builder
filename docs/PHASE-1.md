@@ -115,17 +115,7 @@ More archetypes added in later phases based on user demand.
 
 ## Team Structure
 
-| Module | Skills needed | Potential owners |
-|---|---|---|
-| `web-ui` | React, Next.js, TypeScript | Frontend contributors |
-| `server` | Node.js, Fastify, TypeScript | Backend contributors |
-| `intelligence` + `prompts` | AI/LLM, prompt engineering | AI contributors + Sahar |
-| `telegram` | Bot API, TypeScript | Bot-experienced contributors |
-| `ingestion` | PDF parsing, document handling | Any TS contributor |
-| `schemas` + `core` | TypeScript, system design | ABB + senior contributors |
-| `eval` | Testing, fixtures | Any contributor |
-
-Assignments finalized in team call.
+See [TEAM.md](./TEAM.md) for the full team structure with specific assignments, working agreements, and how to get started.
 
 ## Timeline
 
