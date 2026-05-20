@@ -185,6 +185,30 @@ function findIssues(cv: string, archetype: RoleArchetype) {
     }
   }
 
+  cv = cv.replace(/[–—]/g, "-").replace(/\//g, "-").replace(/\s+/g, " ");
+
+  const text = cv.toLowerCase();
+  const educationIndex = text.indexOf("education");
+  const experienceIndex = text.indexOf("experience");
+
+  if (educationIndex !== -1 && experienceIndex !== -1) {
+    const isEducationFirst = educationIndex < experienceIndex;
+    const jobMatches = new Set(
+      (text.match(/\b(engineer|developer|manager|analyst|consultant|intern|lead|architect|scientist|specialist|associate|director|officer|administrator|designer|programmer|tester|qa|product|data|software|frontend|backend|fullstack|devops|sre|mobile)\b/g) || [])
+    );
+
+    const isExperienced = jobMatches.size >= 2;
+
+    if (isEducationFirst && isExperienced) {
+      issues.push({
+        element: "Education-first layout",
+        why: "Experienced candidates should lead with work experience, as recruiters prioritize recent professional history during quick scans.",
+        fix: "Move Education below Experience. Lead with your work history.",
+        severity: "major",
+      });
+    }
+  }
+
   return issues;
 }
 
