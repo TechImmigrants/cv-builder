@@ -184,7 +184,25 @@ function findIssues(cv: string, archetype: RoleArchetype) {
       });
     }
   }
+  // Word count heuristic: CVs >800 words (~2 pages), >1000 clearly too long
+  const wordCount = cv.trim() ? cv.trim().split(/\s+/).length : 0;
 
+  if (wordCount > 1000) {
+    issues.push({
+      element: "Excessive CV length",
+      why: "CVs longer than 2 pages reduce readability and make it harder for recruiters to quickly identify key achievements.",
+      fix: "Keep CV within 1–2 pages by removing outdated experience and focusing on high-impact work.",
+      severity: "major",
+    });
+  } else if (wordCount > 800) {
+    issues.push({
+      element: "Potentially long CV",
+      why: "CVs over ~800 words may exceed optimal length and reduce recruiter attention.",
+      fix: "Keep CV concise (1–2 pages) by shortening bullet points and removing less relevant details.",
+      severity: "minor",
+    });
+  }
+  
   return issues;
 }
 

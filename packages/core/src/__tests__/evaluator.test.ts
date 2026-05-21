@@ -81,4 +81,34 @@ describe("evaluate", () => {
         withoutJD.dimensions.find((d) => d.name === "Keyword Match")!.score
       );
   });
+
+  it("flags CVs over 800 words as minor issue", async () => {
+    const makeText = (count: number) =>
+      Array.from({ length: count }).fill("word").join(" ");
+
+    const result = await evaluate({
+      cv: { content: makeText(850), format: "markdown" },
+    });
+
+    const issue = result.issues.find(i =>
+      i.element.includes("CV")
+    );
+
+    expect(issue?.severity).toBe("minor");
+  });
+
+  it("flags CVs over 1000 words as major issue", async () => {
+    const makeText = (count: number) =>
+      Array.from({ length: count }).fill("word").join(" ");
+
+    const result = await evaluate({
+      cv: { content: makeText(1100), format: "markdown" },
+    });
+
+    const issue = result.issues.find(i =>
+      i.element.includes("CV")
+    );
+
+    expect(issue?.severity).toBe("major");
+  });
 });
