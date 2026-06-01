@@ -132,8 +132,10 @@ Currently built-in:
 
 - AI Product Manager
 - AI Engineer
+- Machine Learning Engineer
 - Backend Engineer
 - Frontend Engineer
+- QA / Test Engineer
 - DevOps / SRE
 - Data Engineer
 
@@ -145,7 +147,7 @@ Currently built-in:
 
 ### v0.1 (Current Sprint)
 - [x] Core evaluation engine with 6 dimensions
-- [x] 6 role archetypes
+- [x] 8 role archetypes
 - [x] Universal anti-pattern detection
 - [x] CLI: basic evaluate command
 - [ ] Unit tests for scoring logic

@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { evaluate } from "../evaluator/index.js";
+import { detectArchetype, getArchetype } from "../archetypes/index.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const fixtures = resolve(__dirname, "../__fixtures__");
@@ -80,5 +81,24 @@ describe("evaluate", () => {
       .toBeGreaterThanOrEqual(
         withoutJD.dimensions.find((d) => d.name === "Keyword Match")!.score
       );
+  });
+
+  it("supports the classical machine learning engineer archetype", () => {
+    const archetype = getArchetype("machine-learning-engineer");
+
+    expect(archetype.name).toBe("Machine Learning Engineer");
+    expect(archetype.keywords.length).toBeGreaterThanOrEqual(15);
+    expect(archetype.keywords.length).toBeLessThanOrEqual(30);
+    expect(archetype.actionVerbs.length).toBeGreaterThanOrEqual(10);
+    expect(archetype.antiPatterns.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it("detects classical machine learning engineer signals", () => {
+    const archetype = detectArchetype(
+      "Built scikit-learn and XGBoost models with feature engineering, cross-validation, pandas, NumPy, and MLflow.",
+      "Need Python machine learning engineer for model evaluation, hyperparameter tuning, and production model monitoring."
+    );
+
+    expect(archetype.id).toBe("machine-learning-engineer");
   });
 });
