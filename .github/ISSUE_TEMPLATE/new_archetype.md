@@ -3,7 +3,7 @@ name: New Role Archetype
 about: Add a new role type (e.g., "Mobile Engineer", "Security Engineer")
 title: "[Archetype] "
 labels: archetype, good first issue
-assignees: ''
+assignees: ""
 ---
 
 ## Role name
@@ -26,14 +26,14 @@ List the key terms recruiters look for in this role:
 
 How should the 6 dimensions be weighted for this role?
 
-| Dimension | Suggested weight |
-|-----------|-----------------|
-| Shipped Evidence | ? |
-| Quantified Impact | ? |
-| Tooling Visibility | ? |
-| ATS Compatibility | ? |
-| Keyword Match | ? |
-| Public Proof | ? |
+| Dimension          | Suggested weight |
+| ------------------ | ---------------- |
+| Shipped Evidence   | ?                |
+| Quantified Impact  | ?                |
+| Tooling Visibility | ?                |
+| ATS Compatibility  | ?                |
+| Keyword Match      | ?                |
+| Public Proof       | ?                |
 
 ## Action verbs (10+)
 

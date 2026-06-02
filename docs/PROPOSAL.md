@@ -18,20 +18,20 @@ A TypeScript-only, monorepo CV evaluator and builder. v1 ships **evaluation**: p
 
 ## Key decisions
 
-| Decision | Choice | Why |
-|---|---|---|
-| Language | TypeScript only | UI needs it; nothing in scope needs Python |
-| Monorepo | pnpm + turborepo (existing) | Already in place, works |
-| Schema | Zod, centralized package | Shared types across apps and prompts |
-| LLM | Provider-agnostic adapter | Avoid lock-in; users may self-host |
-| UI | Next.js + TanStack Query + Tolgee (i18n) | SSR-friendly, typed data layer, multilingual from day one |
-| Server | Fastify on Node | Mature, typed (TypeBox/Zod plugin), great plugin ecosystem |
-| CLI | Prompts + templates only (no binary) | Power users run their own Claude / Codex / Gemini against our prompt pack |
-| Workflow | Deterministic pipeline | Tool calling restricted to small choices (e.g., "ask user" vs "proceed") |
-| PDF parser | `unpdf` | ESM-native, runs in Node and edge, actively maintained |
-| JD URL crawler | Playwright | Most JD pages are JS-rendered; static fetchers (cheerio/got) miss them |
-| Telegram transport | Long polling in dev, webhook in prod | No public URL needed locally; same code path |
-| Default hosted LLM | Anthropic Claude | Strongest structured-output adherence in our testing; adapter still swappable |
+| Decision           | Choice                                   | Why                                                                           |
+| ------------------ | ---------------------------------------- | ----------------------------------------------------------------------------- |
+| Language           | TypeScript only                          | UI needs it; nothing in scope needs Python                                    |
+| Monorepo           | pnpm + turborepo (existing)              | Already in place, works                                                       |
+| Schema             | Zod, centralized package                 | Shared types across apps and prompts                                          |
+| LLM                | Provider-agnostic adapter                | Avoid lock-in; users may self-host                                            |
+| UI                 | Next.js + TanStack Query + Tolgee (i18n) | SSR-friendly, typed data layer, multilingual from day one                     |
+| Server             | Fastify on Node                          | Mature, typed (TypeBox/Zod plugin), great plugin ecosystem                    |
+| CLI                | Prompts + templates only (no binary)     | Power users run their own Claude / Codex / Gemini against our prompt pack     |
+| Workflow           | Deterministic pipeline                   | Tool calling restricted to small choices (e.g., "ask user" vs "proceed")      |
+| PDF parser         | `unpdf`                                  | ESM-native, runs in Node and edge, actively maintained                        |
+| JD URL crawler     | Playwright                               | Most JD pages are JS-rendered; static fetchers (cheerio/got) miss them        |
+| Telegram transport | Long polling in dev, webhook in prod     | No public URL needed locally; same code path                                  |
+| Default hosted LLM | Anthropic Claude                         | Strongest structured-output adherence in our testing; adapter still swappable |
 
 ## Architecture in one picture
 
@@ -57,10 +57,10 @@ A TypeScript-only, monorepo CV evaluator and builder. v1 ships **evaluation**: p
 
 ## Two user modes (privacy is explicit, not implied)
 
-| Mode | Who | Data path | Privacy |
-|---|---|---|---|
-| **Power-user (CLI)** | Devs running their own Claude / Codex / Gemini against `apps/cli/` | Resume + JD never leave the user's machine. They use their own model and their own key. | Fully private. We store nothing. |
-| **Hosted (web-ui + telegram)** | Everyone else | Resume + JD go to our backend, which calls the LLM provider with our key. | Not private by default. We do not persist resume text, but data does transit our infrastructure and the provider. This is stated up-front in the UI. |
+| Mode                           | Who                                                                | Data path                                                                               | Privacy                                                                                                                                              |
+| ------------------------------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Power-user (CLI)**           | Devs running their own Claude / Codex / Gemini against `apps/cli/` | Resume + JD never leave the user's machine. They use their own model and their own key. | Fully private. We store nothing.                                                                                                                     |
+| **Hosted (web-ui + telegram)** | Everyone else                                                      | Resume + JD go to our backend, which calls the LLM provider with our key.               | Not private by default. We do not persist resume text, but data does transit our infrastructure and the provider. This is stated up-front in the UI. |
 
 The hosted mode is the trade-off for being usable by non-technical people. The CLI mode is the escape hatch for anyone who wants zero data egress.
 

@@ -3,7 +3,7 @@ name: Bug Report
 about: Something isn't working correctly
 title: "[Bug] "
 labels: bug
-assignees: ''
+assignees: ""
 ---
 
 ## What happened?

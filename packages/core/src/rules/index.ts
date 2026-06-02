@@ -88,10 +88,32 @@ export const UNIVERSAL_RULES = {
     },
     {
       name: "Strong/excellent skills claim",
-      match: "(strong|excellent|exceptional) (communication|problem[- ]solving|leadership) skills",
+      match:
+        "(strong|excellent|exceptional) (communication|problem[- ]solving|leadership) skills",
       why: "Self-assessed soft skills are ignored by screeners. Actions prove skills.",
       fix: "Replace with evidence: 'Mentored 3 junior engineers to promotion' or 'Presented quarterly results to 200-person all-hands'",
       severity: "minor",
+    },
+    {
+      name: "Missing email",
+      match: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
+      why: "Contact email is required for recruiters to reach out.",
+      fix: "Add your email address to the CV.",
+      severity: "critical",
+    },
+    {
+      name: "Missing phone number",
+      match: "(?:\\+?\\d{1,3}[-.\\s]?)?\\(?\\d{3}\\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}",
+      why: "A phone number provides an immediate way to contact you.",
+      fix: "Add your phone number.",
+      severity: "minor",
+    },
+    {
+      name: "Missing LinkedIn",
+      match: "linkedin\\.com",
+      why: "LinkedIn is the standard for professional background verification.",
+      fix: "Add your LinkedIn profile URL.",
+      severity: "major",
     },
   ] satisfies AntiPattern[],
 

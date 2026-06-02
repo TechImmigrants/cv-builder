@@ -81,9 +81,7 @@ function scoreDimensions(
     {
       name: "Keyword Match",
       weight: weights.keywordMatch,
-      score: options.jd
-        ? scoreKeywordMatch(options.cv.content, options.jd.content)
-        : 3,
+      score: options.jd ? scoreKeywordMatch(options.cv.content, options.jd.content) : 3,
       maxScore: 5,
       feedback: "",
     },
@@ -121,7 +119,8 @@ function scoreShippedEvidence(cv: string): number {
 }
 
 function scoreQuantifiedImpact(cv: string): number {
-  const numberPatterns = /\d+[%xX]|\$[\d,]+|\d+\+?\s*(users|customers|teams|engineers|requests)/g;
+  const numberPatterns =
+    /\d+[%xX]|\$[\d,]+|\d+\+?\s*(users|customers|teams|engineers|requests)/g;
   const matches = cv.match(numberPatterns) || [];
   if (matches.length >= 8) return 5;
   if (matches.length >= 5) return 4;
@@ -140,9 +139,7 @@ function scoreToolingVisibility(cv: string, archetype: RoleArchetype): number {
 
 function scoreKeywordMatch(cv: string, jd: string): number {
   const jdWords = extractKeywords(jd);
-  const matched = jdWords.filter((w) =>
-    cv.toLowerCase().includes(w.toLowerCase())
-  );
+  const matched = jdWords.filter((w) => cv.toLowerCase().includes(w.toLowerCase()));
   const ratio = matched.length / Math.max(jdWords.length, 1);
   if (ratio >= 0.7) return 5;
   if (ratio >= 0.5) return 4;
@@ -175,7 +172,21 @@ function findIssues(cv: string, archetype: RoleArchetype) {
   const issues: EvaluationResult["issues"] = [];
 
   for (const pattern of UNIVERSAL_RULES.antiPatterns) {
-    if (new RegExp(pattern.match, "i").test(cv)) {
+    const regex = new RegExp(pattern.match, "i");
+    const found = regex.test(cv);
+
+    const isPresenceRule = [
+      "Missing email",
+      "Missing phone number",
+      "Missing LinkedIn",
+      "Missing location",
+    ].includes(pattern.name);
+
+    // there is an issue if the email or linkedin doesnt match (!found)
+    // the others antiPatterns will trigger and issue if there is match (found)
+    const hasIssue = isPresenceRule ? !found : found;
+
+    if (hasIssue) {
       issues.push({
         element: pattern.name,
         why: pattern.why,
@@ -193,29 +204,74 @@ function findStrengths(cv: string, archetype: RoleArchetype): string[] {
 
   if (/\d+%/.test(cv)) strengths.push("Uses quantified metrics");
   if (/github\.com/i.test(cv)) strengths.push("Links to public code");
-  if (/shipped|launched|deployed/i.test(cv))
-    strengths.push("Shows shipped work");
+  if (/shipped|launched|deployed/i.test(cv)) strengths.push("Shows shipped work");
 
   const keywordMatches = archetype.keywords.filter((kw) =>
     cv.toLowerCase().includes(kw.toLowerCase())
   );
   if (keywordMatches.length > 3)
-    strengths.push(
-      `Strong keyword coverage (${keywordMatches.length} matches)`
-    );
+    strengths.push(`Strong keyword coverage (${keywordMatches.length} matches)`);
 
   return strengths;
 }
 
 function extractKeywords(jd: string): string[] {
   const stopWords = new Set([
-    "the", "a", "an", "is", "are", "was", "were", "be", "been",
-    "being", "have", "has", "had", "do", "does", "did", "will",
-    "would", "could", "should", "may", "might", "shall", "can",
-    "and", "or", "but", "if", "in", "on", "at", "to", "for",
-    "of", "with", "by", "from", "as", "into", "through", "during",
-    "before", "after", "above", "below", "between", "we", "you",
-    "they", "this", "that", "these", "those", "our", "your",
+    "the",
+    "a",
+    "an",
+    "is",
+    "are",
+    "was",
+    "were",
+    "be",
+    "been",
+    "being",
+    "have",
+    "has",
+    "had",
+    "do",
+    "does",
+    "did",
+    "will",
+    "would",
+    "could",
+    "should",
+    "may",
+    "might",
+    "shall",
+    "can",
+    "and",
+    "or",
+    "but",
+    "if",
+    "in",
+    "on",
+    "at",
+    "to",
+    "for",
+    "of",
+    "with",
+    "by",
+    "from",
+    "as",
+    "into",
+    "through",
+    "during",
+    "before",
+    "after",
+    "above",
+    "below",
+    "between",
+    "we",
+    "you",
+    "they",
+    "this",
+    "that",
+    "these",
+    "those",
+    "our",
+    "your",
   ]);
 
   const words = jd
