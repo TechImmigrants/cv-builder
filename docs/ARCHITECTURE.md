@@ -23,56 +23,73 @@ cv-builder/
 ## Packages
 
 ### `schemas`
+
 Zod schemas for: `Resume`, `JobDescription`, `Archetype`, `RubricVersion`, `EvalResult`, `Claim`, `Issue`, `LLMCall`. Every other package imports types from here.
 
 ### `prompts`
+
 Prompt files (`.md`) grouped by step (`extract.md`, `score.md`, `validate-claims.md`, `clarify.md`). A loader returns a rendered prompt + the Zod schema the response must satisfy. The `cli` app is a thin export of this package's files.
 
 ### `llm`
+
 One interface:
+
 ```ts
 interface LLMClient {
   call<T>(req: { prompt: string; schema: ZodSchema<T>; model?: string }): Promise<T>;
 }
 ```
+
 Adapters: OpenAI, Anthropic, Ollama. Handles JSON-schema mode, retries, and parse-or-throw against the Zod schema.
 
 ### `ingestion`
+
 Parsers and fetchers. Input: file, text, or URL. Output: typed `Resume` or `JobDescription` (best-effort, partial).
+
 - **PDF resumes** — `unpdf`.
 - **JD from URL** — Playwright. Most job boards (Greenhouse, Lever, Workday, LinkedIn) render content via JS, so a static fetch returns an empty shell. Playwright loads the page, waits for content, extracts the JD text. Headless Chromium is heavy but unavoidable for this surface.
 - **Markdown / plain text** — direct parse.
 
 ### `intelligence`
+
 The "brain". Contains:
+
 - `archetypes/` — role configs (weights, keywords, anti-patterns)
 - `rubric/` — versioned scoring rubric
 - `pipeline/` — `evaluate(resume, jd, archetype)` runs the deterministic steps
 - `validators/` — claim validator, tool/tech hallucination detector, ATS formatter checker
 
 ### `templates`
+
 Two layers so both web-ui and CLI can use it:
+
 - **Manifest layer** — each template described as data (sections, fields, ordering, constraints) typed against `schemas`. Prompts in `apps/cli/` reference manifests so a power user's agent knows what to fill.
 - **Render layer** — React components that render a `Resume` against a manifest. Consumed by `web-ui` now; feeds PDF export later.
 
 ### `eval`
+
 Golden fixtures (`fixtures/*.json` = JD + resume + expected findings). Vitest runner asserts: required findings present, banned hallucinations absent, score within tolerance. Runs in CI.
 
 ### `core`
+
 Orchestrator. Exposes one function per use case (e.g., `runEvaluation`) that composes ingestion → intelligence → validators → result. Apps depend on `core`, not on `intelligence` directly.
 
 ## Apps
 
 ### `web-ui`
+
 Next.js. Routes: template editor, JD paste, eval result view. Multilingual via Tolgee. Calls `server` over HTTP. "Bring your own key" toggle stays first-class.
 
 ### `server`
+
 Fastify. Endpoints: `POST /eval`, `POST /parse`, `POST /telegram/webhook`. Holds the server-side LLM key (or proxies the user's). Never persists resume text.
 
 ### `telegram`
+
 Telegram bot. v1 surface: send resume + JD as files or text, receive eval result back. Long polling in dev.
 
 ### `cli`
+
 A folder of `.md` files. README tells users to point Claude Code / Codex / Gemini CLI at it. No npm package.
 
 ## Data flow — evaluation (v1)
@@ -101,7 +118,7 @@ Deterministic. Match the resume's titles, tools, and verbs against each archetyp
 classify(resume) → "ai-engineer"  // or "backend", "pm", "data-scientist", ...
 ```
 
-### Step 4 — `evaluate`  (the only LLM step)
+### Step 4 — `evaluate` (the only LLM step)
 
 We hydrate a prompt template from `packages/prompts/score.md` with the archetype + rubric + the user's data, ask for a Zod-validated `EvalResult` back, and that's it. Schematically, the call looks like:
 

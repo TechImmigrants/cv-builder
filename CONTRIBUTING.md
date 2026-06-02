@@ -45,6 +45,7 @@ git checkout -b feature/your-feature-name
 ```
 
 Branch naming:
+
 - `feature/pdf-export` — new features
 - `fix/scoring-bug` — bug fixes
 - `archetype/mobile-engineer` — new role archetypes
@@ -88,6 +89,7 @@ git push origin feature/your-feature-name
 ```
 
 Then open a PR on GitHub. Fill in the template — it asks:
+
 - What does this PR do?
 - Related issue number
 - Type of change
@@ -160,6 +162,7 @@ ARCHETYPES.set("mobile-engineer", {
 ## First Time Contributing to Open Source?
 
 Welcome! You belong here. These resources help:
+
 - [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
 - [First Timers Only](https://www.firsttimersonly.com/)
 - [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)

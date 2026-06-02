@@ -66,7 +66,8 @@ describe("evaluate", () => {
   });
 
   it("scores higher when CV matches JD keywords", async () => {
-    const jd = "Looking for a Python engineer with PostgreSQL, Redis, and Kafka experience. Must have shipped production systems at scale.";
+    const jd =
+      "Looking for a Python engineer with PostgreSQL, Redis, and Kafka experience. Must have shipped production systems at scale.";
 
     const withJD = await evaluate({
       cv: { content: strongCV, format: "markdown" },
@@ -76,9 +77,10 @@ describe("evaluate", () => {
       cv: { content: strongCV, format: "markdown" },
     });
 
-    expect(withJD.dimensions.find((d) => d.name === "Keyword Match")!.score)
-      .toBeGreaterThanOrEqual(
-        withoutJD.dimensions.find((d) => d.name === "Keyword Match")!.score
-      );
+    expect(
+      withJD.dimensions.find((d) => d.name === "Keyword Match")!.score
+    ).toBeGreaterThanOrEqual(
+      withoutJD.dimensions.find((d) => d.name === "Keyword Match")!.score
+    );
   });
 });
