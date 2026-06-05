@@ -107,7 +107,7 @@ pnpm test
 | Your skill | Start here |
 |------------|-----------|
 | TypeScript / Backend | `packages/core/` — scoring algorithms, new archetypes |
-| React / Frontend | `packages/web/` — build the UI from scratch |
+| React / Frontend | `apps/web-ui/` — build the UI from scratch |
 | CLI / Node.js | `packages/cli/` — new commands, output formatting |
 | Research / Writing | `research/` — find sources, validate rules |
 | Design / UX | UI mockups, user flows, accessibility |
