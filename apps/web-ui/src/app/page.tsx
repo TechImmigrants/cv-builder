@@ -3,7 +3,9 @@ import { ThemeToggle } from "./components/ThemeToggle";
 export default function Home() {
   return (
     <main className="flex flex-1 bg-zinc-50 px-6 py-16 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
-      <ThemeToggle/>
+      <div className="fixed right-6 top-6">
++        <ThemeToggle/>
++      </div>
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-12">
         <section className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10 sm:p-12">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">

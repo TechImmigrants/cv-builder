@@ -34,7 +34,7 @@ export default function RootLayout({
     >
       <head>
         <Script
-          src="/theme-script.js"
+          src="/scripts/theme-script.js"
           strategy="beforeInteractive"
         />
       </head>
