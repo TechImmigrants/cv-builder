@@ -14,8 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "CV Builder",
-  description:
-    "Build a tailored resume from a job description in a simple web app.",
+  description: "Build a tailored resume from a job description in a simple web app.",
 };
 
 export default function RootLayout({

@@ -1,11 +1,11 @@
-import type {
-  TailorOptions,
-  TailoredCV,
-  CVChange,
-  Suggestion,
-  LLMProvider,
-} from "../types.js";
 import { detectArchetype } from "../archetypes/index.js";
+import type {
+  CVChange,
+  LLMProvider,
+  Suggestion,
+  TailoredCV,
+  TailorOptions,
+} from "../types.js";
 
 export interface BuilderConfig {
   provider?: LLMProvider;
@@ -19,7 +19,7 @@ export interface BuilderConfig {
  */
 export async function tailor(
   options: TailorOptions,
-  config?: BuilderConfig
+  _config?: BuilderConfig
 ): Promise<TailoredCV> {
   const archetype = options.archetype
     ? (await import("../archetypes/index.js")).getArchetype(options.archetype)
@@ -29,9 +29,7 @@ export async function tailor(
   const cvLower = options.cv.content.toLowerCase();
 
   const matched = jdKeywords.filter((kw) => cvLower.includes(kw.toLowerCase()));
-  const missing = jdKeywords.filter(
-    (kw) => !cvLower.includes(kw.toLowerCase())
-  );
+  const missing = jdKeywords.filter((kw) => !cvLower.includes(kw.toLowerCase()));
 
   const changes: CVChange[] = [];
   const markdown = options.cv.content;
@@ -48,16 +46,12 @@ export async function tailor(
 /**
  * Generates improvement suggestions without modifying the CV.
  */
-export function suggest(
-  options: TailorOptions
-): Suggestion[] {
+export function suggest(options: TailorOptions): Suggestion[] {
   const suggestions: Suggestion[] = [];
   const cv = options.cv.content;
   const jdKeywords = extractKeywords(options.jd.content);
 
-  const missing = jdKeywords.filter(
-    (kw) => !cv.toLowerCase().includes(kw.toLowerCase())
-  );
+  const missing = jdKeywords.filter((kw) => !cv.toLowerCase().includes(kw.toLowerCase()));
 
   if (missing.length > 5) {
     suggestions.push({
@@ -95,12 +89,54 @@ export function suggest(
 
 function extractKeywords(text: string): string[] {
   const stopWords = new Set([
-    "the", "a", "an", "is", "are", "was", "were", "be", "been",
-    "being", "have", "has", "had", "do", "does", "did", "will",
-    "would", "could", "should", "may", "might", "shall", "can",
-    "and", "or", "but", "if", "in", "on", "at", "to", "for",
-    "of", "with", "by", "from", "as", "we", "you", "they",
-    "this", "that", "our", "your", "about", "who", "what",
+    "the",
+    "a",
+    "an",
+    "is",
+    "are",
+    "was",
+    "were",
+    "be",
+    "been",
+    "being",
+    "have",
+    "has",
+    "had",
+    "do",
+    "does",
+    "did",
+    "will",
+    "would",
+    "could",
+    "should",
+    "may",
+    "might",
+    "shall",
+    "can",
+    "and",
+    "or",
+    "but",
+    "if",
+    "in",
+    "on",
+    "at",
+    "to",
+    "for",
+    "of",
+    "with",
+    "by",
+    "from",
+    "as",
+    "we",
+    "you",
+    "they",
+    "this",
+    "that",
+    "our",
+    "your",
+    "about",
+    "who",
+    "what",
   ]);
 
   const words = text
