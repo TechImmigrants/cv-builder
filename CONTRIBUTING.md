@@ -23,11 +23,18 @@ pnpm build
 
 ```
 packages/
-├── core/     # Evaluation engine — TypeScript library
-├── cli/      # Command-line tool
-└── web/      # Browser UI (Next.js)
-research/     # Sources and data backing our rules
-docs/         # Architecture and guides
+├── schemas/       # Zod contract shared across surfaces
+├── intelligence/  # Rubric, archetypes, validators
+├── prompts/       # extract / score / validate-claims prompt pack
+├── core/          # Deterministic evaluation engine
+├── cli/           # Command-line tool
+└── eval/          # Golden fixtures (pnpm eval)
+apps/
+├── cli/           # Power-user pack — quickstart for Claude Code
+└── web-ui/        # Browser UI (Next.js)
+.claude/           # Claude Code skill + slash commands
+research/          # Sources and data backing our rules
+docs/              # Architecture and guides
 ```
 
 ## Development Workflow
