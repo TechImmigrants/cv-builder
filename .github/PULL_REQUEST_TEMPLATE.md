@@ -4,7 +4,7 @@ Brief description of the change.
 
 ## Related issue
 
-Closes #___
+Closes #\_\_\_
 
 ## Type of change
 
@@ -25,5 +25,5 @@ Closes #___
 
 ## Screenshots (if UI change)
 
-Before | After
---- | ---
+| Before | After |
+| ------ | ----- |

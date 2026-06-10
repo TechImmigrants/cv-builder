@@ -88,10 +88,41 @@ export const UNIVERSAL_RULES = {
     },
     {
       name: "Strong/excellent skills claim",
-      match: "(strong|excellent|exceptional) (communication|problem[- ]solving|leadership) skills",
+      match:
+        "(strong|excellent|exceptional) (communication|problem[- ]solving|leadership) skills",
       why: "Self-assessed soft skills are ignored by screeners. Actions prove skills.",
       fix: "Replace with evidence: 'Mentored 3 junior engineers to promotion' or 'Presented quarterly results to 200-person all-hands'",
       severity: "minor",
+    },
+    {
+      name: "Outdated tool without modern stack",
+      match:
+        "\\b(jQuery(?!.*\\b(React|Vue|Angular|Svelte)\\b)|AngularJS|PHP 5(?:\\.\\d+)?|Python 2(?:\\.\\d+)?|SVN(?!.*\\bGit\\b)|CoffeeScript|Backbone\\.js|(?:Grunt|Gulp)(?!.*\\b(Webpack|Vite|Rollup|Parcel|esbuild)\\b))\\b",
+      why: "Listing deprecated or legacy technologies without modern frameworks makes your resume look stale and lack growth.",
+      fix: "Replace with modern alternatives or remove the outdated technology.",
+      severity: "major",
+    },
+    {
+      name: "Outdated tool with modern stack",
+      match:
+        "\\b(jQuery|AngularJS|PHP 5(?:\\.\\d+)?|Python 2(?:\\.\\d+)?|SVN|CoffeeScript|Backbone\\.js|Grunt|Gulp)\\b.*\\b(React|Vue|Angular|Svelte|Git|Webpack|Vite|Rollup|Parcel|esbuild)\\b|\\b(React|Vue|Angular|Svelte|Git|Webpack|Vite|Rollup|Parcel|esbuild)\\b.*\\b(jQuery|AngularJS|PHP 5(?:\\.\\d+)?|Python 2(?:\\.\\d+)?|SVN|Heroku|CoffeeScript|Backbone\\.js|Grunt|Gulp)\\b",
+      why: "Listing outdated technologies alongside modern frameworks can be confusing and may not accurately represent your skills.",
+      fix: "Remove outdated technologies to show focus on modern skills.",
+      severity: "minor",
+    },
+    {
+      name: "Heroku deployment timeline 2024 and below",
+      match: "\\bHeroku\\b.*\\b(20[0-1]\\d|202[0-4]|\\d{1,2})\\b",
+      why: "Heroku is only appropriate for older work, and older dates should be clearly shown.",
+      fix: "Heroku can be kept for legacy experience, but post 2024, it should be replaced with a modern deployment platform.",
+      severity: "minor",
+    },
+    {
+      name: "Heroku deployment timeline post 2024",
+      match: "\\bHeroku\\b",
+      why: "Heroku as primary deployment is outdated for modern resumes unless the experience is clearly dated before 2024.",
+      fix: "Add a date for Heroku (pre-2025) or remove/replace Heroku with a current deployment platform.",
+      severity: "major",
     },
   ] satisfies AntiPattern[],
 

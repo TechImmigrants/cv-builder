@@ -14,6 +14,7 @@ An open source, privacy-first CV builder for tech professionals. Built by the [T
 Good CV tools are expensive. Many job seekers — especially immigrants, career changers, and people in countries with restricted internet — can't access them. We're building a free, open source alternative backed by real hiring research.
 
 **What makes this different:**
+
 - Scoring based on [250+ researched sources](research/sources.md) from FAANG recruiters, AI hiring managers, and industry experts
 - Role-specific evaluation (not one-size-fits-all)
 - Privacy-first: works offline, no data collection
@@ -35,14 +36,14 @@ Good CV tools are expensive. Many job seekers — especially immigrants, career 
 
 ### Scoring Dimensions
 
-| Dimension | What it measures |
-|-----------|-----------------|
-| Shipped Evidence | Real work in production, not theory |
-| Quantified Impact | Numbers in every bullet (%, $, users) |
-| Tooling Visibility | Specific tools named, matching the JD |
-| ATS Compatibility | Will it parse correctly in applicant tracking systems? |
-| Keyword Match | Terminology from the JD present in your CV |
-| Public Proof | GitHub, blog, portfolio links that verify claims |
+| Dimension          | What it measures                                       |
+| ------------------ | ------------------------------------------------------ |
+| Shipped Evidence   | Real work in production, not theory                    |
+| Quantified Impact  | Numbers in every bullet (%, $, users)                  |
+| Tooling Visibility | Specific tools named, matching the JD                  |
+| ATS Compatibility  | Will it parse correctly in applicant tracking systems? |
+| Keyword Match      | Terminology from the JD present in your CV             |
+| Public Proof       | GitHub, blog, portfolio links that verify claims       |
 
 Weights vary by role type. An AI Engineer's CV is scored differently than a Product Manager's.
 
@@ -104,14 +105,14 @@ pnpm test
 
 ### Where to Start
 
-| Your skill | Start here |
-|------------|-----------|
+| Your skill           | Start here                                            |
+| -------------------- | ----------------------------------------------------- |
 | TypeScript / Backend | `packages/core/` — scoring algorithms, new archetypes |
-| React / Frontend | `apps/web-ui/` — build the UI from scratch |
-| CLI / Node.js | `packages/cli/` — new commands, output formatting |
-| Research / Writing | `research/` — find sources, validate rules |
-| Design / UX | UI mockups, user flows, accessibility |
-| DevOps / CI | `.github/workflows/` — testing, releases, automation |
+| React / Frontend     | `apps/web-ui/` — build the UI from scratch            |
+| CLI / Node.js        | `packages/cli/` — new commands, output formatting     |
+| Research / Writing   | `research/` — find sources, validate rules            |
+| Design / UX          | UI mockups, user flows, accessibility                 |
+| DevOps / CI          | `.github/workflows/` — testing, releases, automation  |
 
 ### Issue Labels
 
@@ -144,6 +145,7 @@ Currently built-in:
 ## Roadmap
 
 ### v0.1 (Current Sprint)
+
 - [x] Core evaluation engine with 6 dimensions
 - [x] 6 role archetypes
 - [x] Universal anti-pattern detection
@@ -152,6 +154,7 @@ Currently built-in:
 - [ ] Web UI: paste and score screen
 
 ### v0.2
+
 - [ ] LLM-enhanced mode (rewrite suggestions)
 - [ ] PDF export
 - [ ] 15+ role archetypes
@@ -159,6 +162,7 @@ Currently built-in:
 - [ ] Localization (multiple languages)
 
 ### v0.3
+
 - [ ] Side-by-side tailoring editor
 - [ ] Before/after examples library
 - [ ] VS Code / Cursor extension
@@ -179,6 +183,7 @@ Currently built-in:
 ## Research
 
 Our rules are backed by data, not vibes. See:
+
 - [research/sources.md](research/sources.md) — All 250+ sources with citations
 - [research/data/](research/data/) — Structured market data
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — Technical design decisions
