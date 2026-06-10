@@ -95,7 +95,7 @@ export const UNIVERSAL_RULES = {
     },
     {
       name: "Outdated tool without modern stack",
-      match: "\\b(jQuery(?!.*\\b(React|Vue|Angular|Svelte)\\b)|AngularJS|PHP 5(?:\\.\\d+)?|Python 2(?:\\.\\d+)?|SVN(?!.*\\bGit\\b)|Heroku|CoffeeScript|Backbone\\.js|(?:Grunt|Gulp)(?!.*\\b(Webpack|Vite|Rollup|Parcel|esbuild)\\b))\\b",
+      match: "\\b(jQuery(?!.*\\b(React|Vue|Angular|Svelte)\\b)|AngularJS|PHP 5(?:\\.\\d+)?|Python 2(?:\\.\\d+)?|SVN(?!.*\\bGit\\b)|CoffeeScript|Backbone\\.js|(?:Grunt|Gulp)(?!.*\\b(Webpack|Vite|Rollup|Parcel|esbuild)\\b))\\b",
       why: "Listing deprecated or legacy technologies without modern frameworks makes your resume look stale and lack growth.",
       fix: "Replace with modern alternatives or remove the outdated technology.",
       severity: "major",
@@ -103,12 +103,27 @@ export const UNIVERSAL_RULES = {
     {
       name: "Outdated tool with modern stack",
        match:
-      "\\b(jQuery|AngularJS|PHP 5(?:\\.\\d+)?|Python 2(?:\\.\\d+)?|SVN|Heroku|CoffeeScript|Backbone\\.js|Grunt|Gulp)\\b.*\\b(React|Vue|Angular|Svelte|Git|Webpack|Vite|Rollup|Parcel|esbuild)\\b|\\b(React|Vue|Angular|Svelte|Git|Webpack|Vite|Rollup|Parcel|esbuild)\\b.*\\b(jQuery|AngularJS|PHP 5(?:\\.\\d+)?|Python 2(?:\\.\\d+)?|SVN|Heroku|CoffeeScript|Backbone\\.js|Grunt|Gulp)\\b",
+      "\\b(jQuery|AngularJS|PHP 5(?:\\.\\d+)?|Python 2(?:\\.\\d+)?|SVN|CoffeeScript|Backbone\\.js|Grunt|Gulp)\\b.*\\b(React|Vue|Angular|Svelte|Git|Webpack|Vite|Rollup|Parcel|esbuild)\\b|\\b(React|Vue|Angular|Svelte|Git|Webpack|Vite|Rollup|Parcel|esbuild)\\b.*\\b(jQuery|AngularJS|PHP 5(?:\\.\\d+)?|Python 2(?:\\.\\d+)?|SVN|Heroku|CoffeeScript|Backbone\\.js|Grunt|Gulp)\\b",
       why: "Listing outdated technologies alongside modern frameworks can be confusing and may not accurately represent your skills.",
       fix: "Remove outdated technologies to show focus on modern skills.",
       severity: "minor",
-    }
-
+    },
+    {
+      name: "Heroku deployment timeline (old experience)",
+      match:
+        "\\b(Heroku)\\b[\\s\\S]*\\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s+(?:201\\d|202[0-4])\\b|\\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s+(?:201\\d|202[0-4])\\b[\\s\\S]*\\b(Heroku)\\b|\\b(Heroku)\\b[\\s\\S]*\\b20(?:1\\d|202[0-4])\\b|\\b20(?:1\\d|202[0-4])\\b[\\s\\S]*\\b(Heroku)\\b",
+      why: "Heroku is only appropriate for older work, and older dates should be clearly shown.",
+      fix: "Heroku can be kept for legacy experience, but post 2024, it should be replaced with a modern deployment platform.",
+      severity: "minor",
+    },
+    {
+      name: "Heroku deployment timeline post 2024",
+      match:
+        "^(?![\\s\\S]*\\bHeroku\\b[\\s\\S]*\\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s+(?:201\\d|202[0-4])\\b)(?![\\s\\S]*\\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s+(?:201\\d|202[0-4])\\b[\\s\\S]*\\bHeroku\\b)[\\s\\S]*\\bHeroku\\b",
+      why: "Heroku as primary deployment is outdated for modern resumes unless the experience is clearly dated before 2024.",
+      fix: "Remove/replace Heroku with a current deployment platform.",
+      severity: "major",
+    },
   ] satisfies AntiPattern[],
 
   positivePatterns: [
