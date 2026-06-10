@@ -109,19 +109,17 @@ export const UNIVERSAL_RULES = {
       severity: "minor",
     },
     {
-      name: "Heroku deployment timeline (old experience)",
-      match:
-        "\\b(Heroku)\\b[\\s\\S]*\\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s+(?:201\\d|202[0-4])\\b|\\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s+(?:201\\d|202[0-4])\\b[\\s\\S]*\\b(Heroku)\\b|\\b(Heroku)\\b[\\s\\S]*\\b20(?:1\\d|202[0-4])\\b|\\b20(?:1\\d|202[0-4])\\b[\\s\\S]*\\b(Heroku)\\b",
+      name: "Heroku deployment timeline 2024 and below",
+      match: "\\bHeroku\\b.*\\b(20[0-1]\\d|202[0-4]|\\d{1,2})\\b",
       why: "Heroku is only appropriate for older work, and older dates should be clearly shown.",
       fix: "Heroku can be kept for legacy experience, but post 2024, it should be replaced with a modern deployment platform.",
       severity: "minor",
     },
     {
       name: "Heroku deployment timeline post 2024",
-      match:
-        "^(?![\\s\\S]*\\bHeroku\\b[\\s\\S]*\\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s+(?:201\\d|202[0-4])\\b)(?![\\s\\S]*\\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s+(?:201\\d|202[0-4])\\b[\\s\\S]*\\bHeroku\\b)[\\s\\S]*\\bHeroku\\b",
+      match: "\\bHeroku\\b",
       why: "Heroku as primary deployment is outdated for modern resumes unless the experience is clearly dated before 2024.",
-      fix: "Remove/replace Heroku with a current deployment platform.",
+      fix: "Add a date for Heroku (pre-2025) or remove/replace Heroku with a current deployment platform.",
       severity: "major",
     },
   ] satisfies AntiPattern[],
