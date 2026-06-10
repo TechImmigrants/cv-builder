@@ -17,12 +17,12 @@ Then open [http://localhost:3000](http://localhost:3000).
 
 ## Scripts
 
-| Command | Purpose                    |
-| --- |----------------------------|
-| `pnpm dev` | Start the local dev server |
+| Command      | Purpose                    |
+| ------------ | -------------------------- |
+| `pnpm dev`   | Start the local dev server |
 | `pnpm build` | Build the production app   |
 | `pnpm start` | Run the production build   |
-| `pnpm lint` | Run lint checks            |
+| `pnpm lint`  | Run lint checks            |
 
 ## Main files
 

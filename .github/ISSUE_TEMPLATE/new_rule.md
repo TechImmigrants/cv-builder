@@ -3,7 +3,7 @@ name: New Evaluation Rule
 about: Propose a new CV evaluation rule (anti-pattern or positive pattern)
 title: "[Rule] "
 labels: rules, good first issue
-assignees: ''
+assignees: ""
 ---
 
 ## Rule type
