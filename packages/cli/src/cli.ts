@@ -39,9 +39,7 @@ async function handleEvaluate(args: string[]) {
   }
 
   const cvContent = readFileSync(resolve(cvPath), "utf-8");
-  const jdContent = jdPath
-    ? readFileSync(resolve(jdPath), "utf-8")
-    : undefined;
+  const jdContent = jdPath ? readFileSync(resolve(jdPath), "utf-8") : undefined;
 
   const result = await evaluate({
     cv: { content: cvContent, format: "markdown" },

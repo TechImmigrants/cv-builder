@@ -88,7 +88,8 @@ export const UNIVERSAL_RULES = {
     },
     {
       name: "Strong/excellent skills claim",
-      match: "(strong|excellent|exceptional) (communication|problem[- ]solving|leadership) skills",
+      match:
+        "(strong|excellent|exceptional) (communication|problem[- ]solving|leadership) skills",
       why: "Self-assessed soft skills are ignored by screeners. Actions prove skills.",
       fix: "Replace with evidence: 'Mentored 3 junior engineers to promotion' or 'Presented quarterly results to 200-person all-hands'",
       severity: "minor",
