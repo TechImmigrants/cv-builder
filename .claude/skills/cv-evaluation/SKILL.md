@@ -36,9 +36,11 @@ carry `rubricVersion` and `archetypeVersion`. Validate the object against
 `EvalResultSchema` before presenting it — never show an unvalidated result.
 
 Run the validation from inside `packages/schemas` (zod only resolves there under
-pnpm's layout). If dependencies aren't installed, don't error out: check the
-object field by field against `evaluation.ts` instead, and tell the user that
-running `pnpm install` enables strict validation.
+pnpm's layout). Pipe the JSON to node over stdin rather than writing it to a
+file, so nothing derived from the resume touches the working tree. If
+dependencies aren't installed, don't error out: check the object field by field
+against `evaluation.ts` instead, and tell the user that running `pnpm install`
+enables strict validation.
 
 Then summarize for the user: overall score, the per-dimension breakdown, the top
 issues with their fixes, and any unsupported claims.
