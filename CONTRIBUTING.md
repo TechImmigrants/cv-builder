@@ -118,14 +118,18 @@ This is the easiest way to make a meaningful impact:
 
 1. Open an issue using the "New Role Archetype" template
 2. Research 15-30 keywords for the role (check real job postings)
-3. Add the archetype to `packages/core/src/archetypes/index.ts`
+3. Add a new file in `packages/intelligence/src/archetypes/` and register it in
+   the `ARCHETYPES` array in `packages/intelligence/src/archetypes/index.ts`
 4. Add tests
 5. Submit a PR
 
 Example archetype structure:
 
 ```typescript
-ARCHETYPES.set("mobile-engineer", {
+// packages/intelligence/src/archetypes/mobile-engineer.ts
+import type { Archetype } from "@cv-builder/schemas";
+
+export const mobileEngineer: Archetype = {
   id: "mobile-engineer",
   name: "Mobile Engineer",
   description: "iOS/Android engineers building native and cross-platform apps",
@@ -140,7 +144,8 @@ ARCHETYPES.set("mobile-engineer", {
   },
   actionVerbs: ["Built", "Shipped", "Optimized", ...],
   antiPatterns: ["familiar with mobile development", ...],
-});
+  version: "1.0.0",
+};
 ```
 
 ## Adding a New Rule

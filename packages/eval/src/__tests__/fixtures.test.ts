@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import {
   checkAtsCompatibility,
@@ -19,7 +19,6 @@ interface Expected {
 interface Fixture {
   name: string;
   resume: string;
-  jd?: string;
   expected: Expected;
 }
 
@@ -28,11 +27,9 @@ function loadFixtures(): Fixture[] {
     .filter((d) => d.isDirectory())
     .map((d) => {
       const dir = `${fixturesDir}/${d.name}`;
-      const jdPath = `${dir}/jd.md`;
       return {
         name: d.name,
         resume: readFileSync(`${dir}/resume.md`, "utf-8"),
-        jd: existsSync(jdPath) ? readFileSync(jdPath, "utf-8") : undefined,
         expected: JSON.parse(readFileSync(`${dir}/expected.json`, "utf-8")) as Expected,
       };
     });

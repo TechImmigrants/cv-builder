@@ -18,7 +18,7 @@ export function detectArchetype(
   archetypes: Archetype[] = ARCHETYPES
 ): Archetype {
   const text = resumeText.toLowerCase();
-  let best = DEFAULT_ARCHETYPE;
+  let best = archetypes[0] ?? DEFAULT_ARCHETYPE;
   let bestScore = 0;
 
   for (const archetype of archetypes) {
