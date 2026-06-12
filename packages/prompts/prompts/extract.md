@@ -16,9 +16,9 @@ Return a single JSON object matching the `Resume` schema:
 
 ```json
 {
-  "name": "string | omit",
-  "headline": "string | omit",
-  "summary": "string | omit",
+  "name": "string?",
+  "headline": "string?",
+  "summary": "string?",
   "contact": { "email": "string?", "phone": "string?", "location": "string?" },
   "links": [{ "type": "github|linkedin|portfolio|blog|website|other", "url": "string" }],
   "experience": [

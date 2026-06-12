@@ -14,7 +14,10 @@ self-contained and stays in sync with `@cv-builder/intelligence`.
 import { renderScorePrompt } from "@cv-builder/prompts";
 import { softwareEngineer } from "@cv-builder/intelligence";
 
-const prompt = renderScorePrompt({ archetype: softwareEngineer, jdKeywords });
+const prompt = renderScorePrompt({
+  archetype: softwareEngineer,
+  jdKeywords: ["kubernetes", "graphql"],
+});
 ```
 
 Each prompt asks for JSON matching its schema in `@cv-builder/schemas`; callers
