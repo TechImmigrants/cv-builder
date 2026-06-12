@@ -59,4 +59,9 @@ describe("checkAtsCompatibility", () => {
     const text = "Experience\nBuilt things at Acme.\nContact: jane@example.com";
     expect(checkAtsCompatibility(text).compatible).toBe(true);
   });
+
+  it("flags embedded images", () => {
+    const text = "Experience\njane@example.com\n![headshot](./me.png)";
+    expect(checkAtsCompatibility(text).compatible).toBe(false);
+  });
 });
