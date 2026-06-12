@@ -4,7 +4,6 @@ export const EvaluationDimensionSchema = z.object({
   name: z.string(),
   weight: z.number().min(0).max(1),
   score: z.number().int().min(0).max(5),
-  maxScore: z.number().int().positive().default(5),
   feedback: z.string(),
 });
 export type EvaluationDimension = z.infer<typeof EvaluationDimensionSchema>;

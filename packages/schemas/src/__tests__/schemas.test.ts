@@ -16,7 +16,6 @@ const validEvalResult = {
       name: "Shipped Evidence",
       weight: 0.3,
       score: 4,
-      maxScore: 5,
       feedback: "Strong production work with named outcomes.",
     },
   ],
