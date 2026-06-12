@@ -69,6 +69,12 @@ pnpm --filter @cv-builder/cli start evaluate ./my-cv.md --jd ./job.md
 pnpm --filter @cv-builder/cli start archetypes
 ```
 
+### Power User — run it with Claude Code
+
+Clone the repo, open [Claude Code](https://claude.com/claude-code) at the root, and run `/evaluate-cv ./your-resume.pdf`. The evaluation runs entirely on your machine with your own agent — no server, no account, nothing leaves your computer. No build needed.
+
+See [apps/cli/README.md](apps/cli/README.md) for the full guide.
+
 ### Web UI (coming soon)
 
 A browser-based interface where you paste your CV and JD, get instant feedback, and export a tailored PDF. No sign-up required, no data leaves your browser.
@@ -79,9 +85,16 @@ A browser-based interface where you paste your CV and JD, get instant feedback, 
 
 ```
 packages/
-├── core/     # Evaluation engine (the brain)
-├── cli/      # Command-line interface
-└── web/      # Browser UI (coming soon)
+├── schemas/       # Zod contract shared by every surface
+├── intelligence/  # Rubric, archetypes, validators (the brain)
+├── prompts/       # extract / score / validate-claims prompt pack
+├── core/          # Deterministic evaluation engine
+├── cli/           # Command-line interface
+└── eval/          # Golden fixtures (pnpm eval)
+apps/
+├── cli/           # Power-user quickstart
+└── web-ui/        # Browser UI (coming soon)
+.claude/           # Claude Code skill + slash commands (power-user surface)
 ```
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full technical design.
@@ -106,7 +119,7 @@ pnpm test
 
 | Your skill | Start here |
 |------------|-----------|
-| TypeScript / Backend | `packages/core/` — scoring algorithms, new archetypes |
+| TypeScript / Backend | `packages/intelligence/` — rubric, new archetypes, validators |
 | React / Frontend | `apps/web-ui/` — build the UI from scratch |
 | CLI / Node.js | `packages/cli/` — new commands, output formatting |
 | Research / Writing | `research/` — find sources, validate rules |

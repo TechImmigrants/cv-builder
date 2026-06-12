@@ -1,0 +1,6 @@
+{
+  "name": "@cv-builder/power-user",
+  "version": "0.1.0",
+  "description": "Power-user pack: evaluate your resume locally with your own Claude Code",
+  "private": true
+}

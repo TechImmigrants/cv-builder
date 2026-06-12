@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": ["Read", "Glob", "Grep"]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/welcome.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}
