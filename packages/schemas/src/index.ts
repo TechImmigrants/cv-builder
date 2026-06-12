@@ -2,36 +2,34 @@
 // Phase 1 ships evaluation types only — tailoring/rewrite is Phase 2.
 
 export {
-  EvaluationWeightsSchema,
+  type Archetype,
   ArchetypeSchema,
   type EvaluationWeights,
-  type Archetype,
+  EvaluationWeightsSchema,
 } from "./archetype.js";
-
 export {
-  ResumeSourceSchema,
-  ResumeLinkSchema,
-  ResumeContactSchema,
-  ResumeExperienceSchema,
-  ResumeEducationSchema,
-  ResumeSchema,
-  type ResumeSource,
-  type ResumeLink,
-  type ResumeContact,
-  type ResumeExperience,
-  type ResumeEducation,
-  type Resume,
-} from "./resume.js";
-
-export { JobDescriptionSchema, type JobDescription } from "./job-description.js";
-
-export {
-  EvaluationDimensionSchema,
-  IssueSchema,
+  type Claim,
   ClaimSchema,
+  type EvalResult,
   EvalResultSchema,
   type EvaluationDimension,
+  EvaluationDimensionSchema,
   type Issue,
-  type Claim,
-  type EvalResult,
+  IssueSchema,
 } from "./evaluation.js";
+
+export { type JobDescription, JobDescriptionSchema } from "./job-description.js";
+export {
+  type Resume,
+  type ResumeContact,
+  ResumeContactSchema,
+  type ResumeEducation,
+  ResumeEducationSchema,
+  type ResumeExperience,
+  ResumeExperienceSchema,
+  type ResumeLink,
+  ResumeLinkSchema,
+  ResumeSchema,
+  type ResumeSource,
+  ResumeSourceSchema,
+} from "./resume.js";

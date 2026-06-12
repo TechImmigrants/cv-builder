@@ -1,9 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  ArchetypeSchema,
-  EvalResultSchema,
-  ResumeSchema,
-} from "../index.js";
+import { ArchetypeSchema, EvalResultSchema, ResumeSchema } from "../index.js";
 
 const validEvalResult = {
   rubricVersion: "1.0.0",
@@ -16,7 +12,6 @@ const validEvalResult = {
       name: "Shipped Evidence",
       weight: 0.3,
       score: 4,
-      maxScore: 5,
       feedback: "Strong production work with named outcomes.",
     },
   ],
