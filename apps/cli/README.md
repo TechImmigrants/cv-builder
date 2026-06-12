@@ -18,13 +18,13 @@ tests or the web app.)
 
 Then, inside Claude Code:
 
-```
+```text
 /evaluate-cv ./my-resume.pdf
 ```
 
 Optionally add a job description as keyword context:
 
-```
+```text
 /evaluate-cv ./my-resume.pdf --jd ./job.md
 ```
 
