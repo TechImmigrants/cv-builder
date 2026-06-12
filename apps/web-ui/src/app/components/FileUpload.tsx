@@ -30,7 +30,7 @@ export function FileUpload({
 
         if (extension === "pdf") {
             alert(
-               "PDF text extraction is not yet supported. Please use .txt or .md files."
+                "PDF text extraction is not yet supported. Please use .txt or .md files."
             );
             return;
         }
@@ -65,7 +65,7 @@ export function FileUpload({
                 </p>
 
                 <p className="mt-2 text-sm text-zinc-500">
-                    Supports .txt, .md and .pdf
+                    Supports .txt and .md
                 </p>
 
                 {fileName && (

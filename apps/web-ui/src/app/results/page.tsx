@@ -46,8 +46,8 @@ export default function ResultsPage() {
 
                 <ul className="space-y-2">
                     {result.strengths.map(
-                        (strength: string) => (
-                            <li key={strength}>
+                        (strength: string, index: number) => (
+                            <li key={index}>
                                 • {strength}
                             </li>
                         )
@@ -61,9 +61,9 @@ export default function ResultsPage() {
                 </h2>
 
                 {result.dimensions.map(
-                    (dimension: any) => (
+                    (dimension: any, index: number) => (
                         <div
-                            key={dimension.name}
+                            key={index}
                             className="mb-3 rounded-xl border p-4"
                         >
                             <div className="flex justify-between">
@@ -79,8 +79,7 @@ export default function ResultsPage() {
                             </div>
                         </div>
                     )
-                )}
-            </section>
+                )}            </section>
         </main>
     );
 }
