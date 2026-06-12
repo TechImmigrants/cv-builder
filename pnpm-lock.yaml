@@ -91,9 +91,6 @@ importers:
       '@cv-builder/schemas':
         specifier: workspace:*
         version: link:../schemas
-      zod:
-        specifier: ^3.24.0
-        version: 3.25.76
     devDependencies:
       '@types/node':
         specifier: ^25.6.2

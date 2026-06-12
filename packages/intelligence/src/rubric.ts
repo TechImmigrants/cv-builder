@@ -49,8 +49,7 @@ export const RUBRIC_DIMENSIONS: RubricDimension[] = [
   {
     key: "keywordMatch",
     name: "Keyword Match",
-    description:
-      "Overlap with the JD when provided, else the role-family keyword set.",
+    description: "Overlap with the JD when provided, else the role-family keyword set.",
     low: "Misses the terms the role screens for.",
     high: "Naturally covers the role's expected keywords.",
   },
