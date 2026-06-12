@@ -1,11 +1,6 @@
 import { ArchetypeSchema } from "@cv-builder/schemas";
 import { describe, expect, it } from "vitest";
-import {
-  ARCHETYPES,
-  RUBRIC,
-  checkAtsCompatibility,
-  detectArchetype,
-} from "../index.js";
+import { ARCHETYPES, checkAtsCompatibility, detectArchetype, RUBRIC } from "../index.js";
 
 describe("archetypes", () => {
   it("ships at least 3, each valid against the schema", () => {
@@ -32,7 +27,8 @@ describe("archetypes", () => {
 
 describe("detectArchetype", () => {
   it("detects a software engineer resume", () => {
-    const text = "Built React and Node services, scaled Postgres, deployed on Kubernetes.";
+    const text =
+      "Built React and Node services, scaled Postgres, deployed on Kubernetes.";
     expect(detectArchetype(text).id).toBe("software-engineer");
   });
 
@@ -44,15 +40,28 @@ describe("detectArchetype", () => {
   it("falls back to the default on no signal", () => {
     expect(detectArchetype("hello world").id).toBe("software-engineer");
   });
+
+  it("matches whole words only, not substrings", () => {
+    const text =
+      "Drove go-to-market with MongoDB-backed analytics, owned the roadmap and funnel.";
+    expect(detectArchetype(text).id).toBe("product-manager");
+  });
 });
 
 describe("checkAtsCompatibility", () => {
   it("flags a table layout", () => {
-    expect(checkAtsCompatibility("| Skills | Years |\n| React | 5 |").compatible).toBe(false);
+    expect(checkAtsCompatibility("| Skills | Years |\n| React | 5 |").compatible).toBe(
+      false
+    );
   });
 
   it("passes clean single-column text", () => {
     const text = "Experience\nBuilt things at Acme.\nContact: jane@example.com";
     expect(checkAtsCompatibility(text).compatible).toBe(true);
+  });
+
+  it("flags embedded images", () => {
+    const text = "Experience\njane@example.com\n![headshot](./me.png)";
+    expect(checkAtsCompatibility(text).compatible).toBe(false);
   });
 });

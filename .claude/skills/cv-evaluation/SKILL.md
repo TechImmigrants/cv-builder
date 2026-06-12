@@ -5,7 +5,7 @@ description: Evaluate a resume against the CV Builder rubric and return a scored
 
 # CV Evaluation
 
-Run a resume through the same three-step evaluation the hosted product uses,
+Run a resume through the same four-step evaluation the hosted product uses,
 entirely locally. Everything you need lives in this repo — read the source, don't
 guess.
 

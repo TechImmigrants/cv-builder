@@ -1,10 +1,6 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import {
-  CLAIM_RULES,
-  RUBRIC,
-  RUBRIC_VERSION,
-} from "@cv-builder/intelligence";
+import { CLAIM_RULES, RUBRIC, RUBRIC_VERSION } from "@cv-builder/intelligence";
 import type { Archetype } from "@cv-builder/schemas";
 
 export const PROMPT_NAMES = ["extract", "score", "validate-claims"] as const;
@@ -30,10 +26,7 @@ export interface ScorePromptOptions {
   jdKeywords?: string[];
 }
 
-export function renderScorePrompt({
-  archetype,
-  jdKeywords,
-}: ScorePromptOptions): string {
+export function renderScorePrompt({ archetype, jdKeywords }: ScorePromptOptions): string {
   const weights = Object.entries(archetype.evaluationWeights)
     .map(([key, value]) => `- ${key}: ${value}`)
     .join("\n");

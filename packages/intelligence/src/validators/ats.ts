@@ -32,6 +32,9 @@ export function checkAtsCompatibility(resumeText: string): AtsCheck {
   if (/\|.*\|/.test(resumeText) || /\t.*\t/.test(resumeText)) {
     findings.push("Looks like a table or columns — flatten to single-column text.");
   }
+  if (/!\[[^\]]*\]\([^)]+\)/.test(resumeText) || /<img\b/i.test(resumeText)) {
+    findings.push("Contains images, ATS parsers can't read text inside graphics.");
+  }
   if (!/[\w.+-]+@[\w-]+\.[\w.-]+/.test(resumeText)) {
     findings.push("No plain-text email found.");
   }

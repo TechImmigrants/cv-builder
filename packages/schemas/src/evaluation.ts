@@ -4,7 +4,6 @@ export const EvaluationDimensionSchema = z.object({
   name: z.string(),
   weight: z.number().min(0).max(1),
   score: z.number().int().min(0).max(5),
-  maxScore: z.number().int().positive().default(5),
   feedback: z.string(),
 });
 export type EvaluationDimension = z.infer<typeof EvaluationDimensionSchema>;
@@ -20,14 +19,7 @@ export type Issue = z.infer<typeof IssueSchema>;
 
 export const ClaimSchema = z.object({
   text: z.string(),
-  category: z.enum([
-    "tool",
-    "technology",
-    "metric",
-    "experience",
-    "education",
-    "other",
-  ]),
+  category: z.enum(["tool", "technology", "metric", "experience", "education", "other"]),
   supported: z.boolean(),
   reason: z.string(),
 });

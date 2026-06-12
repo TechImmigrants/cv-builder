@@ -5,11 +5,7 @@ import { softwareEngineer } from "./software-engineer.js";
 
 // Register new archetypes here. Software Engineer is the fallback when nothing
 // else clearly matches.
-export const ARCHETYPES: Archetype[] = [
-  softwareEngineer,
-  productManager,
-  dataMlEngineer,
-];
+export const ARCHETYPES: Archetype[] = [softwareEngineer, productManager, dataMlEngineer];
 
 export const DEFAULT_ARCHETYPE = softwareEngineer;
 
@@ -21,4 +17,4 @@ export function listArchetypes(): Archetype[] {
   return ARCHETYPES;
 }
 
-export { softwareEngineer, productManager, dataMlEngineer };
+export { dataMlEngineer, productManager, softwareEngineer };
