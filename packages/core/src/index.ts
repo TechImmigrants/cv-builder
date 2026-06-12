@@ -1,26 +1,26 @@
-export { evaluate } from "./evaluator/index.js";
-export { tailor, suggest } from "./builder/index.js";
 export {
+  detectArchetype,
   getArchetype,
   listArchetypes,
   registerArchetype,
-  detectArchetype,
 } from "./archetypes/index.js";
+export { suggest, tailor } from "./builder/index.js";
+export { evaluate } from "./evaluator/index.js";
 export { UNIVERSAL_RULES } from "./rules/index.js";
 export type {
-  EvaluationResult,
-  EvaluationDimension,
-  TailoredCV,
   CVChange,
-  Suggestion,
-  Issue,
-  Rewrite,
-  RoleArchetype,
-  EvaluationWeights,
   CVInput,
-  JobDescription,
   EvaluateOptions,
-  TailorOptions,
+  EvaluationDimension,
+  EvaluationResult,
+  EvaluationWeights,
+  Issue,
+  JobDescription,
   LLMProvider,
   ProviderConfig,
+  Rewrite,
+  RoleArchetype,
+  Suggestion,
+  TailoredCV,
+  TailorOptions,
 } from "./types.js";

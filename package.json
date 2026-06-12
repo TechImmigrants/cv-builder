@@ -6,14 +6,15 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
     "test": "turbo test",
     "eval": "turbo eval",
-    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\""
+    "format": "biome format --write .",
+    "format:check": "biome format ."
   },
   "devDependencies": {
-    "prettier": "^3.3.0",
+    "@biomejs/biome": "^2.4.16",
     "turbo": "^2.4.0",
     "typescript": "^5.7.0"
   },
