@@ -79,7 +79,8 @@ export default function ResultsPage() {
                             </div>
                         </div>
                     )
-                )}            </section>
+                )}
+            </section>
         </main>
     );
 }
