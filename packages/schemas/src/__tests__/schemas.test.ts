@@ -1,9 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  ArchetypeSchema,
-  EvalResultSchema,
-  ResumeSchema,
-} from "../index.js";
+import { ArchetypeSchema, EvalResultSchema, ResumeSchema } from "../index.js";
 
 const validEvalResult = {
   rubricVersion: "1.0.0",

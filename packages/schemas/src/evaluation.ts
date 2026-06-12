@@ -19,14 +19,7 @@ export type Issue = z.infer<typeof IssueSchema>;
 
 export const ClaimSchema = z.object({
   text: z.string(),
-  category: z.enum([
-    "tool",
-    "technology",
-    "metric",
-    "experience",
-    "education",
-    "other",
-  ]),
+  category: z.enum(["tool", "technology", "metric", "experience", "education", "other"]),
   supported: z.boolean(),
   reason: z.string(),
 });
