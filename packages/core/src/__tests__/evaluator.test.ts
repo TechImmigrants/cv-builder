@@ -1,7 +1,7 @@
-import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { resolve, dirname } from "node:path";
+import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { describe, expect, it } from "vitest";
 import { evaluate } from "../evaluator/index.js";
 import { detectArchetype, getArchetype } from "../archetypes/index.js";
 
@@ -67,7 +67,8 @@ describe("evaluate", () => {
   });
 
   it("scores higher when CV matches JD keywords", async () => {
-    const jd = "Looking for a Python engineer with PostgreSQL, Redis, and Kafka experience. Must have shipped production systems at scale.";
+    const jd =
+      "Looking for a Python engineer with PostgreSQL, Redis, and Kafka experience. Must have shipped production systems at scale.";
 
     const withJD = await evaluate({
       cv: { content: strongCV, format: "markdown" },
@@ -77,10 +78,11 @@ describe("evaluate", () => {
       cv: { content: strongCV, format: "markdown" },
     });
 
-    expect(withJD.dimensions.find((d) => d.name === "Keyword Match")!.score)
-      .toBeGreaterThanOrEqual(
-        withoutJD.dimensions.find((d) => d.name === "Keyword Match")!.score
-      );
+    expect(
+      withJD.dimensions.find((d) => d.name === "Keyword Match")?.score
+    ).toBeGreaterThanOrEqual(
+      withoutJD.dimensions.find((d) => d.name === "Keyword Match")?.score
+    );
   });
 
   it("supports the classical machine learning engineer archetype", () => {
