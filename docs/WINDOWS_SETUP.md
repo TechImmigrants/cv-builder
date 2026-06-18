@@ -3,12 +3,13 @@
 This guide fills in the Windows-specific details that are easy to miss when
 you follow the standard setup steps in [../CONTRIBUTING.md](../CONTRIBUTING.md).
 
-## 1. Install Node.js 20
+## 1. Install Node.js
 
-Use one of these supported paths:
+This project supports Node.js 20 and newer. The commands below install Node.js
+20 to match the minimum supported version:
 
 - `nvm-windows`: install it from the [nvm-windows releases](https://github.com/coreybutler/nvm-windows/releases), then run `nvm install 20` and `nvm use 20`
-- Direct download: install the current Node.js 20 LTS build from [nodejs.org](https://nodejs.org/en/download)
+- Direct download: install the latest archived Node.js 20 build from [nodejs.org](https://nodejs.org/dist/latest-v20.x/)
 
 Confirm the version after installation:
 
