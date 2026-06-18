@@ -33,7 +33,7 @@ async function handleEvaluate(args: string[]) {
   const jdPath = readOptionValue(args, "--jd");
   const format = readOptionValue(args, "--format") ?? "text";
 
-  if (!cvPath) {
+  if (!cvPath || cvPath.startsWith("--")) {
     console.error(
       "Usage: cv-builder evaluate <cv-file> [--jd <jd-file>] [--format <text|json>]"
     );

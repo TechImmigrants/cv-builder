@@ -1,9 +1,9 @@
-import { describe, it, expect, beforeAll } from "vitest";
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { beforeAll, describe, expect, it } from "vitest";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const cliEntry = resolve(__dirname, "../dist/cli.js");
@@ -97,5 +97,12 @@ describe("cv-builder evaluate --format json", () => {
     expect(missingFormat.stderr).toContain("Missing value for --format");
     expect(missingJd.status).not.toBe(0);
     expect(missingJd.stderr).toContain("Missing value for --jd");
+  });
+
+  it("rejects an option token in place of the CV file", () => {
+    const result = runCli(["evaluate", "--format", "json"]);
+
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toContain("Usage: cv-builder evaluate <cv-file>");
   });
 });
