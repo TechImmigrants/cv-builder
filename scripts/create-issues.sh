@@ -295,7 +295,7 @@ echo "Creating web UI issues..."
 
 gh issue create --repo $REPO --title "[Web] Set up Next.js project with Tailwind" \
   --label "web-ui,help wanted" \
-  --body "Initialize the web package (\`packages/web/\`) with a Next.js + Tailwind project.
+  --body "Initialize the web package (\`apps/web-ui/\`) with a Next.js + Tailwind project.
 
 **Requirements:**
 - Next.js 15 (App Router)

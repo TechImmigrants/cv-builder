@@ -66,10 +66,16 @@ pnpm --filter @cv-builder/cli dev     # Watch mode for CLI
 # Run tests
 pnpm test
 
-# Check formatting
+# Lint (Biome)
+pnpm lint
+
+# Auto-fix lint + formatting issues
+pnpm lint:fix
+
+# Check formatting only
 pnpm format:check
 
-# Fix formatting
+# Fix formatting only
 pnpm format
 ```
 

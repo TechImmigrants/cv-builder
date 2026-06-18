@@ -30,23 +30,33 @@ async function main() {
 
 async function handleEvaluate(args: string[]) {
   const cvPath = args[0];
-  const jdFlagIndex = args.indexOf("--jd");
-  const jdPath = jdFlagIndex !== -1 ? args[jdFlagIndex + 1] : undefined;
+  const jdPath = readOptionValue(args, "--jd");
+  const format = readOptionValue(args, "--format") ?? "text";
 
-  if (!cvPath) {
-    console.error("Usage: cv-builder evaluate <cv-file> [--jd <jd-file>]");
+  if (!cvPath || cvPath.startsWith("--")) {
+    console.error(
+      "Usage: cv-builder evaluate <cv-file> [--jd <jd-file>] [--format <text|json>]"
+    );
+    process.exit(1);
+  }
+
+  if (format !== "text" && format !== "json") {
+    console.error(`Unknown --format value: ${format}. Supported: text, json`);
     process.exit(1);
   }
 
   const cvContent = readFileSync(resolve(cvPath), "utf-8");
-  const jdContent = jdPath
-    ? readFileSync(resolve(jdPath), "utf-8")
-    : undefined;
+  const jdContent = jdPath ? readFileSync(resolve(jdPath), "utf-8") : undefined;
 
   const result = await evaluate({
     cv: { content: cvContent, format: "markdown" },
     jd: jdContent ? { content: jdContent } : undefined,
   });
+
+  if (format === "json") {
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
 
   console.log(`\n  CV Score: ${result.score}/5\n`);
   console.log(`  Archetype detected: ${result.archetype.name}\n`);
@@ -76,6 +86,21 @@ async function handleEvaluate(args: string[]) {
   console.log(`\n  ATS Compatible: ${result.atsCompatible ? "✓ Yes" : "✗ No"}\n`);
 }
 
+function readOptionValue(args: string[], option: string): string | undefined {
+  const index = args.indexOf(option);
+  if (index === -1) {
+    return undefined;
+  }
+
+  const value = args[index + 1];
+  if (!value || value.startsWith("--")) {
+    console.error(`Missing value for ${option}`);
+    process.exit(1);
+  }
+
+  return value;
+}
+
 function handleListArchetypes() {
   const archetypes = listArchetypes();
   console.log("\n  Available role archetypes:\n");
@@ -94,13 +119,16 @@ function printHelp() {
     cv-builder <command> [options]
 
   COMMANDS
-    evaluate <cv-file> [--jd <jd-file>]    Score your CV (optionally against a JD)
+    evaluate <cv-file> [--jd <jd-file>] [--format <text|json>]
+                                            Score your CV (optionally against a JD).
+                                            Use --format json for machine-readable output.
     archetypes                              List available role archetypes
     help                                    Show this help
 
   EXAMPLES
     cv-builder evaluate ./my-cv.md
     cv-builder evaluate ./my-cv.md --jd ./job-description.md
+    cv-builder evaluate ./my-cv.md --format json
     cv-builder archetypes
 
   More commands coming soon: tailor, export, suggest
