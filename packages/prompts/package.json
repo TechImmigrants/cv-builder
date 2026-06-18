@@ -1,0 +1,40 @@
+{
+  "name": "@cv-builder/prompts",
+  "version": "0.1.0",
+  "description": "Prompt pack — extract, score, and validate-claims templates",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "prompts"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@cv-builder/intelligence": "workspace:*",
+    "@cv-builder/schemas": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.2",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "keywords": [
+    "cv",
+    "resume",
+    "prompts",
+    "llm"
+  ],
+  "license": "MIT"
+}
