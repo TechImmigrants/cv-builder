@@ -1,10 +1,12 @@
-# yaml-language-server: $schema=https://docs.coderabbit.ai/schema.json
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: en-US
+early_access: false
 
 reviews:
   profile: chill
   request_changes_workflow: false
   high_level_summary: true
+  poem: false
   review_status: true
   auto_review:
     enabled: true
@@ -13,6 +15,38 @@ reviews:
       - main
   path_filters:
     - "!**/pnpm-lock.yaml"
+    - "!**/dist/**"
+    - "!**/.turbo/**"
+    - "!**/node_modules/**"
+    - "!**/*.snap"
+  path_instructions:
+    - path: "packages/core/**"
+      instructions: >
+        This is the core CV evaluation/builder logic. Prioritize correctness of
+        rules, evaluator scoring, and types. Flag changes to public APIs in
+        src/index.ts and anything in src/types.ts that could break consumers.
+        New rules/archetypes/evaluator behavior should have matching vitest tests.
+    - path: "packages/cli/**"
+      instructions: >
+        CLI for the CV builder. Watch for unhandled errors, confusing output,
+        and missing input validation. Behavior changes should be covered by tests.
+    - path: "packages/web/**"
+      instructions: >
+        Web frontend. Check accessibility, error/loading states, and that UI
+        stays consistent with the core package's data model.
+    - path: "**/*.md"
+      instructions: >
+        Docs for an open-source project. Check clarity and that setup/commands
+        match the actual scripts in package.json.
+  tools:
+    eslint:
+      enabled: true
+    markdownlint:
+      enabled: true
 
 chat:
   auto_reply: true
+
+knowledge_base:
+  learnings:
+    scope: auto
