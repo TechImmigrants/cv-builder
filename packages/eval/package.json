@@ -1,0 +1,22 @@
+{
+  "name": "@cv-builder/eval",
+  "version": "0.1.0",
+  "description": "Golden fixtures and eval harness for the deterministic intelligence layer",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "eval": "vitest run",
+    "dev": "vitest"
+  },
+  "dependencies": {
+    "@cv-builder/intelligence": "workspace:*",
+    "@cv-builder/schemas": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.2",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "license": "MIT"
+}
