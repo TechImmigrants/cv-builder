@@ -152,6 +152,129 @@ ARCHETYPES.set("mobile-engineer", {
 
 ---
 
+## Contributing Without Code
+
+You don't need to write TypeScript to make a meaningful contribution. Most of
+the work that makes this project useful — research, rules, anti-patterns,
+sample CVs, translations, docs — comes from people with domain expertise, not
+engineering skills. If you've ever reviewed a friend's CV, you've already done
+80% of the work for several of these paths.
+
+### Five ways to contribute without coding
+
+#### 1. Add a research source
+
+Every scoring rule and keyword list should trace back to evidence — recruiter
+interviews, hiring-manager surveys, market data. We currently cite 250+
+sources in [`research/sources.md`](research/sources.md). The bar to add one is
+low and the impact is real.
+
+**How to do it:**
+1. Find a credible source (recruiter post, hiring study, industry report).
+   Personal blogs and unsubstantiated opinions don't count — published or
+   institutional sources where possible.
+2. Open an issue with the `research` label. Include:
+   - The source (URL + author + date)
+   - The specific claim it supports
+   - Which rule, archetype, or anti-pattern it backs
+3. A maintainer will review and merge it into `research/sources.md` (or open a
+   PR if you'd like to do it yourself).
+
+**Example:**
+> Source: "The 7 Things Recruiters Look For First" — John Smith, 2025.
+> Supports: `keywordMatch` rubric dimension.
+> Specific claim: "80% of recruiters spend less than 6 seconds on initial scan;
+> keyword presence is the dominant factor in pass/fail."
+
+**Time cost:** 10–20 minutes per source.
+
+#### 2. Propose an anti-pattern
+
+Every archetype ships with an `antiPatterns` list — phrases like *"passionate
+about products"*, *"leveraged synergies"*, *"team player"*, *"familiar with X"*
+that read as filler to recruiters. These come from real CVs and real recruiter
+feedback, not from a textbook. If you've spotted one in the wild, add it.
+
+**How to do it:**
+1. Find a phrase in your own CV (or a friend's) that you now realize was filler.
+2. Check [`packages/core/src/archetypes/`](packages/core/src/archetypes/) — if
+   it's not already listed for the relevant archetype, open an issue with the
+   `rules` label.
+3. Include:
+   - The phrase
+   - Which archetype it's relevant to (or "all")
+   - Why it reads as filler (1–2 sentences)
+
+**Time cost:** 5–10 minutes per anti-pattern.
+
+#### 3. Provide a sample CV (or job description)
+
+We don't have public test fixtures. That means contributors writing scoring
+rules have nothing to test against, and users have nothing to compare their
+own CV to. A small library of sample CVs — deliberately imperfect, with weak
+metrics, vague impact, missing quantification — would unlock both contributor
+testing and user demos.
+
+**How to do it:**
+1. Author a fictional CV: 1 page, 3–5 years of experience, deliberately
+   include 2–3 weak spots. Or anonymize your own.
+2. Pair it with a fictional job description.
+3. Open an issue with the `examples` label and attach both files (or paste
+   inline).
+4. Maintainers will add to `examples/` (we'll create the directory).
+
+**Time cost:** 30–45 minutes per pair.
+
+#### 4. Improve the docs
+
+Docs gaps are everywhere. The `docs/` directory has architecture notes, a
+phase-1 plan, and an issues seed — but no contributor onboarding doc, no
+"frequently asked questions," no "I just got a bad score, what do I do"
+guide, no CLI troubleshooting, no glossary of evaluation terms. Each of
+these is a 1-page writeup.
+
+**How to do it:**
+1. Pick a gap from the list above (or one you've personally hit).
+2. Write the doc in `docs/`.
+3. Open a PR using the branch naming `docs/<your-doc>`.
+
+**Time cost:** 30–90 minutes per doc.
+
+#### 5. Triage issues and help others
+
+The fastest way to become a recognized contributor is to be the person who
+answers questions. Right now most issues get one response from a maintainer
+— if you can answer even one open issue, you free maintainer time and signal
+"I'm here, I know this codebase."
+
+**How to do it:**
+1. Look at issues with the `help wanted` or `good first issue` label.
+2. If you can answer a question (even partially), comment. If you can reproduce
+   a bug, comment with the steps.
+3. If you're confident a label is missing or an issue is a duplicate, suggest
+   it via a comment (maintainers will adjust labels).
+
+**Time cost:** 5–15 minutes per issue.
+
+---
+
+### How to submit a non-code contribution
+
+The workflow is the same as code, minus the obvious steps:
+
+1. **Open an issue first** using the most relevant label (`research`, `rules`,
+   `examples`, `docs`). Comment "I'll take this" to claim it.
+2. **For docs / examples:** fork → branch → PR. Branch-naming
+   conventions from the [Development Workflow](#development-workflow) section
+   still apply (`docs/<your-doc>`, `archetype/<your-archetype>`, etc.).
+3. **For research / anti-patterns / triage:** an issue is enough — no PR
+   needed unless you want to write the change yourself.
+
+A maintainer will respond within 48 hours. If you don't hear back, ping the
+[Telegram group](https://t.me/techimmigrants).
+
+---
+
 ## Guidelines
 
 - **One issue = one PR.** Don't bundle unrelated changes.
