@@ -59,7 +59,6 @@ scope. **Comment "I'll take this" on the issue to claim.**
 | New archetype: **AI Product Manager** | M | (open issue) | Top priority for the 2026 market. |
 | New archetypes: Backend / Frontend / DevOps | M each | (open issue) | Currently advertised in README but unimplemented. |
 | Land CONTRIBUTING.md "no-code" section | S | (open issue) | The draft this file came from. |
-| Translation: `README.es.md` (Spanish) | M | (open issue) | Highest-impact translation per audience demographics. |
 | Translation: `README.pt-BR.md` (Portuguese) | M | (open issue) | Large Brazilian / Portuguese job-seeker audience. |
 | Translation: `README.hi.md` (Hindi) | M | (open issue) | |
 | Translation: `README.ar.md` (Arabic) | M | (open issue) | |
