@@ -78,10 +78,10 @@ describe("evaluate", () => {
       cv: { content: strongCV, format: "markdown" },
     });
 
-    expect(
-      withJD.dimensions.find((d) => d.name === "Keyword Match")?.score
+        expect(
+      withJD.dimensions.find((d) => d.name === "Keyword Match")!.score
     ).toBeGreaterThanOrEqual(
-      withoutJD.dimensions.find((d) => d.name === "Keyword Match")?.score
+      withoutJD.dimensions.find((d) => d.name === "Keyword Match")!.score
     );
   });
 
