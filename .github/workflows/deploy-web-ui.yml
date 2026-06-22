@@ -1,0 +1,98 @@
+name: Deploy web UI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/web-ui/**"
+      # include the workflow itself so edits to this file re-trigger a deploy
+      - ".github/workflows/deploy-web-ui.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "apps/web-ui/**"
+      - ".github/workflows/deploy-web-ui.yml"
+
+# Cancel an in-flight deploy for the same ref when a new commit lands.
+# Prevents stale previews and saves Cloudflare build minutes.
+concurrency:
+  group: deploy-web-ui-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write # required to post the preview URL comment
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build (static export → apps/web-ui/out)
+        working-directory: apps/web-ui
+        env:
+          # Plumbed for when the fastify backend lands; harmless local default until then. See issue #77.
+          NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || 'http://localhost:3001' }}
+        run: pnpm build
+
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # --commit-dirty=true is required: the wrangler-action sets CI=1 and would otherwise refuse a deploy with apps/web-ui/out/ as an uncommitted change.
+          command: pages deploy apps/web-ui/out --project-name=cv-builder-web --commit-dirty=true
+
+      - name: Post preview URL on PR
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+          COMMENT_MARKER: cv-builder-web-preview-deploy
+        run: |
+          set -euo pipefail
+
+          BODY=$(cat <<EOF
+          <!-- ${COMMENT_MARKER} -->
+          🌐 **Preview deployment:** ${ALIAS_URL}
+
+          _Updated automatically on every push to this PR._
+          EOF
+          )
+
+          AUTH=(-H "Authorization: token ${GH_TOKEN}" -H "Accept: application/vnd.github+json")
+          JSON=$(jq -nc --arg body "${BODY}" '{body: $body}')
+
+          # Find the existing bot comment for this PR (if any) by the marker, so
+          # we update it instead of posting a duplicate on every push.
+          EXISTING_ID=$(curl -fsS "${AUTH[@]}" \
+            "https://api.github.com/repos/${REPO}/issues/${PR_NUMBER}/comments?per_page=100" \
+            | jq -r --arg m "${COMMENT_MARKER}" \
+                '.[] | select(.body | contains($m)) | .id' \
+            | head -n1)
+
+          if [[ "${EXISTING_ID}" =~ ^[0-9]+$ ]]; then
+            curl -fsS -X PATCH "${AUTH[@]}" \
+              "https://api.github.com/repos/${REPO}/issues/comments/${EXISTING_ID}" \
+              -d "${JSON}"
+            echo "Updated existing comment ${EXISTING_ID}"
+          else
+            curl -fsS -X POST "${AUTH[@]}" \
+              "https://api.github.com/repos/${REPO}/issues/${PR_NUMBER}/comments" \
+              -d "${JSON}"
+            echo "Posted new comment"
+          fi

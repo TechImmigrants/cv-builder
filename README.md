@@ -126,6 +126,26 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
 
 ---
 
+## Deployment
+
+The web UI (`apps/web-ui/`) is deployed to **Cloudflare Pages**. Every push to a
+PR that changes `apps/web-ui/**` triggers the `Deploy web UI` workflow, which
+builds a static export and posts a preview URL as a comment on the PR. Pushes
+to `main` deploy to the production site.
+
+### Required repo secrets
+
+| Secret | Where to get it |
+| --- | --- |
+| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard → My Profile → API Tokens → Create Token → use the "Edit Cloudflare Pages" template, scoped to the account and `cv-builder-web` project |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard → Workers & Pages → right sidebar |
+
+The `cv-builder-web` Cloudflare Pages project must exist before the first
+deploy — create it once via the dashboard or
+`wrangler pages project create cv-builder-web`.
+
+---
+
 ## Supported Role Archetypes
 
 Currently built-in:
