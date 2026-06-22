@@ -154,7 +154,7 @@ sample CVs, translations, docs — comes from people with domain expertise, not
 engineering skills. If you've ever reviewed a friend's CV, you've already done
 80% of the work for several of these paths.
 
-### Six ways to contribute without coding
+### Five ways to contribute without coding
 
 #### 1. Add a research source
 
@@ -219,27 +219,7 @@ testing and user demos.
 
 **Time cost:** 30–45 minutes per pair.
 
-#### 4. Translate the README or docs
-
-The README is the project's front door. Most of the audience this project
-serves — immigrants, career changers, people in countries with restricted
-internet — reads English as a second or third language. A clean translation
-unlocks thousands of readers.
-
-**How to do it:**
-1. Fork the repo.
-2. Copy `README.md` → `README.<lang-code>.md` (e.g., `README.es.md`,
-   `README.pt-BR.md`, `README.hi.md`, `README.ar.md`, `README.zh.md`).
-3. Translate faithfully. Preserve code blocks (don't translate shell commands).
-   Preserve links to English docs unless you can link to a translated version.
-4. Open a PR using the branch naming `docs/translate-<lang>`.
-
-**Highest-impact first translations** (per audience demographics and GitHub
-traffic): Spanish, Brazilian Portuguese, Hindi, Arabic, Mandarin.
-
-**Time cost:** 1–2 hours per language.
-
-#### 5. Improve the docs
+#### 4. Improve the docs
 
 Docs gaps are everywhere. The `docs/` directory has architecture notes, a
 phase-1 plan, and an issues seed — but no contributor onboarding doc, no
@@ -254,7 +234,7 @@ these is a 1-page writeup.
 
 **Time cost:** 30–90 minutes per doc.
 
-#### 6. Triage issues and help others
+#### 5. Triage issues and help others
 
 The fastest way to become a recognized contributor is to be the person who
 answers questions. Right now most issues get one response from a maintainer
@@ -278,7 +258,7 @@ The workflow is the same as code, minus the obvious steps:
 
 1. **Open an issue first** using the most relevant label (`research`, `rules`,
    `examples`, `docs`). Comment "I'll take this" to claim it.
-2. **For docs / translations / examples:** fork → branch → PR. Branch-naming
+2. **For docs / examples:** fork → branch → PR. Branch-naming
    conventions from the [Development Workflow](#development-workflow) section
    still apply (`docs/<your-doc>`, `archetype/<your-archetype>`, etc.).
 3. **For research / anti-patterns / triage:** an issue is enough — no PR
