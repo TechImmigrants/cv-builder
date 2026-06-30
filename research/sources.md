@@ -20,6 +20,14 @@ Last updated: May 2026
 | ML resumes rejected (missing MLOps) | 68% | NeuraCV | neuracv.com |
 | RAG in new AI engineering roles | 70% | MirrorCV | mirrorcv.com |
 
+## Role Archetype Sources
+
+| Archetype | Claim | Source | URL | Accessed |
+|-----------|-------|--------|-----|----------|
+| Machine Learning Engineer | ML engineers build, evaluate, productionize, optimize, monitor, and improve ML models; core areas include model architecture, data/ML pipelines, metrics interpretation, MLOps, and data engineering. | Google Cloud Professional Machine Learning Engineer Exam Guide | https://cloud.google.com/learn/certification/guides/machine-learning-engineer | 2026-06-01 |
+| Machine Learning Engineer | scikit-learn covers model selection, cross-validation, hyperparameter tuning, metrics, pipelines, preprocessing, feature extraction, feature selection, and model persistence. | scikit-learn User Guide | https://scikit-learn.org/stable/user_guide | 2026-06-01 |
+| Machine Learning Engineer | XGBoost's Python API supports scikit-learn-style estimators, evaluation sets, early stopping, feature weights, and feature importance for tree boosters. | XGBoost Python API Reference | https://xgboost.readthedocs.io/en/stable/python/python_api.html | 2026-06-01 |
+
 ## Expert Opinions
 
 ### Andrej Karpathy (Ex-OpenAI, Tesla AI Director)
